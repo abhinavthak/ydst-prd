@@ -275,7 +275,7 @@ section h2,section h3{scroll-margin-top:16px}
 <div class="hero"><div class="hero-in"><div>
   <div class="kicker">PRODUCT SPEC · UPGRAD · YOURDEGREE</div>
   <h1>YDST Scholarship Test</h1>
-  <p>A learner registers on the scholarship page, pays a one-time registration fee and takes a 60-minute test on Gradr. Their score unlocks a discount on first-semester tuition straight away. Every step is sent to OneCRM so upGrad counsellors can follow up. The fee, what it covers, the attempt limit and the score-to-discount levers are all set by admins (9.2). The full journey is in 3.1, and every CRM touch point is in 8.1.</p>
+  <p>A learner registers on the scholarship page, pays a one-time registration fee and takes a 60-minute test on Gradr. Their score unlocks a discount on first-semester tuition straight away. Every step is sent to OneCRM so upGrad counsellors can follow up. The fee, what it covers, the attempt limit and the score-to-discount levers are all set by admins (10.2). The full journey is in 3.1, and every CRM touch point is in 9.1.</p>
   <div class="meta">
     <span><b>Owner</b>: Abhinav Thakur (PM)</span>
     <span><b>Design</b>: TBD</span>
@@ -302,26 +302,28 @@ section h2,section h3{scroll-margin-top:16px}
     <h4>At a glance</h4>
     <dl>
       <dt>What</dt><dd>An online scholarship test for upGrad's online degree programmes. Learners register, pay ₹100 once, take the test on Gradr and get a tuition discount based on their score.</dd>
-      <dt>Fee</dt><dd>Set by admins in settings. Default <b>₹100, paid once and valid for life</b>. Admins can instead charge per attempt or for a fixed number of days (9.2).</dd>
+      <dt>Fee</dt><dd>Set by admins in settings. Default <b>₹100, paid once and valid for life</b>. Admins can instead charge per attempt or for a fixed number of days (10.2).</dd>
       <dt>Attempts</dt><dd>Set by admins in settings. Default <b>one attempt per calendar month</b>, with no fee for retakes while the fee is valid (3.2).</dd>
       <dt>Discount</dt><dd>One target score per discount, set by admins in settings. Defaults: <b>51+ → 50% off</b>, <b>41+ → 30% off</b>, <b>31+ → 15% off</b> first-semester tuition. Below the lowest target, no discount; the learner can retake when their next attempt opens (3.3).</dd>
-      <dt>Configurable</dt><dd>Fee amount, what the fee covers, the attempt limit and the score-to-discount levers are all edited in the admin dashboard (9.2), with no code release. A change applies only from that moment: learners keep what they already paid for, and finished attempts keep the discount they earned (3.5).</dd>
+      <dt>Configurable</dt><dd>Fee amount, what the fee covers, the attempt limit and the score-to-discount levers are all edited in the admin dashboard (10.2), with no code release. A change applies only from that moment: learners keep what they already paid for, and finished attempts keep the discount they earned (3.5).</dd>
       <dt>Journey</dt><dd>Scholarship page → register with OTP → pay the fee → payment confirmed → redirect to Gradr → real-time result → discount activated (3.1).</dd>
-      <dt>CRM</dt><dd>The lead is created in OneCRM at registration and updated at every later step, so counsellors always see where the learner is (8).</dd>
+      <dt>CRM</dt><dd>The lead is created in OneCRM at registration and updated at every later step, so counsellors always see where the learner is (9).</dd>
+      <dt>Profile</dt><dd>Every learner gets a profile, signed in with mobile + OTP. It shows their next step, scholarship code, test history, payments and receipts, and editable details (8).</dd>
       <dt>Built on</dt><dd>YDST scholarship page (existing prototype), upGrad payment gateway, Gradr test platform, OneCRM, fee system, OTP/SMS.</dd>
-      <dt>Key risks</dt><dd>Gradr's result callback must be reliable and secure, or discounts can't be activated in real time (6, 7). Lead updates to OneCRM must never be lost (8.3).</dd>
-      <dt>Still to settle</dt><dd>Gradr and OneCRM API details, when a refund is allowed, and the code validity period (see the open questions in 11.1).</dd>
+      <dt>Key risks</dt><dd>Gradr's result callback must be reliable and secure, or discounts can't be activated in real time (6, 7). Lead updates to OneCRM must never be lost (9.3).</dd>
+      <dt>Still to settle</dt><dd>Gradr and OneCRM API details, when a refund is allowed, and the code validity period (see the open questions in 12.1).</dd>
     </dl>
   </div>
   <div class="whatsnew">
     <h4>What changed in this version · 15 Nov 2026</h4>
     <ul>
-      <li><b>Registration fee and discount levers are now configurable</b> by admins in the dashboard (9.2). ₹100 and 31/41/51 → 15/30/50% are the defaults.</li>
+      <li><b>Registration fee and discount levers are now configurable</b> by admins in the dashboard (10.2). ₹100 and 31/41/51 → 15/30/50% are the defaults.</li>
+      <li><b>New: learner profile (8).</b> Sign in with mobile + OTP to see the next step, scholarship code, test history, payments with receipts, and editable details. Sections 8 onwards renumbered.</li>
       <li><b>Refunds are manual.</b> Finance refunds in the payment gateway and records it in the admin dashboard. Nothing is refunded automatically, including duplicate payments (5.3).</li>
-      <li><b>"Pay once, test monthly" is now configurable too.</b> Admins choose what the fee covers (lifetime, each attempt, or a number of days) and the attempt limit (how many attempts per calendar month, calendar week or rolling days). Lifetime fee and 1 attempt per calendar month are the defaults (3.2, 9.2).</li>
+      <li><b>"Pay once, test monthly" is now configurable too.</b> Admins choose what the fee covers (lifetime, each attempt, or a number of days) and the attempt limit (how many attempts per calendar month, calendar week or rolling days). Lifetime fee and 1 attempt per calendar month are the defaults (3.2, 10.2).</li>
       <li>New rules for what a change affects, and what it never touches (3.5). Each payment and attempt records the settings it used.</li>
       <li>The score calculator in 3.3 now lets you edit the levers, and checks them the way the settings form will.</li>
-      <li>New acceptance criteria for settings (10.2) and new lead fields for the fee paid and settings version (8.2).</li>
+      <li>New acceptance criteria for settings (11.2) and new lead fields for the fee paid and settings version (9.2).</li>
     </ul>
     <div class="mini">Full history in the change log (B).</div>
   </div>
@@ -335,18 +337,18 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><th>Term</th><th>Meaning</th></tr>
     <tr><td>YDST</td><td>YourDegree Scholarship Test. 60 multiple-choice questions, 60 minutes, 1 mark each, no negative marking.</td></tr>
     <tr><td>Scholarship page</td><td>The public landing page with the registration form. Prototype: ydst-scholarship-prototype.</td></tr>
-    <tr><td>Registration fee</td><td>What a learner pays to take the test. Amount and what it covers are set in settings (9.2). Default: ₹100, paid once and valid for life.</td></tr>
+    <tr><td>Registration fee</td><td>What a learner pays to take the test. Amount and what it covers are set in settings (10.2). Default: ₹100, paid once and valid for life.</td></tr>
     <tr><td>Fee validity</td><td>What one payment covers: <b>Lifetime</b> (default), <b>Each attempt</b> (pay before every attempt) or <b>Fixed days</b> (valid for N days from payment, then pay again).</td></tr>
     <tr><td>Attempt limit</td><td>How many attempts a learner can take in a period: calendar month (default), calendar week, or rolling N days. Default: 1 per calendar month.</td></tr>
     <tr><td>Learner</td><td>One person, identified by their OTP-verified mobile number. One mobile number = one learner = one lead.</td></tr>
     <tr><td>Attempt</td><td>One sitting of the test. How many a learner gets is set by the attempt limit.</td></tr>
     <tr><td>Paper</td><td>The question set. <b>Master's</b> (advanced) for MBA, MCA, MA, MCom, MSc. <b>Bachelor's</b> (foundation) for BBA, BCA, BA, BCom, BSc. Chosen from the programme at registration.</td></tr>
-    <tr><td>Discount lever</td><td>A target score and the discount it unlocks. Set in settings (9.2). Defaults: 31+ → 15%, 41+ → 30%, 51+ → 50%.</td></tr>
+    <tr><td>Discount lever</td><td>A target score and the discount it unlocks. Set in settings (10.2). Defaults: 31+ → 15%, 41+ → 30%, 51+ → 50%.</td></tr>
     <tr><td>Settings version</td><td>A numbered snapshot of the fee and levers, saved every time an admin changes them. Every payment and every attempt stores the version it used.</td></tr>
     <tr><td>Scholarship code</td><td>A unique code issued when an attempt hits a discount lever, e.g. <code>YDPG-K7Q2M</code>. It carries the discount and is valid for 30 days.</td></tr>
     <tr><td>Gradr</td><td>The external test platform at gradr.in, where the test is taken and scored.</td></tr>
     <tr><td>OneCRM</td><td>upGrad's CRM at app.onecrm.co.in. Holds the lead that counsellors work on.</td></tr>
-    <tr><td>Touch point</td><td>A step in the journey that creates or updates the learner's lead in OneCRM (8.1).</td></tr>
+    <tr><td>Touch point</td><td>A step in the journey that creates or updates the learner's lead in OneCRM (9.1).</td></tr>
     <tr><td>Void attempt</td><td>An attempt cancelled because Gradr's proctoring flagged unfair means. It earns no discount.</td></tr>
   </table></div>
 
@@ -409,7 +411,7 @@ section h2,section h3{scroll-margin-top:16px}
   <ul>
     <li>I want every ₹100 payment reconciled against the gateway, with transaction IDs.</li>
     <li>I want discounts applied only through valid codes, so no one gets a discount they didn't earn.</li>
-    <li>I want a dashboard of fees collected, scores and discounts issued (9).</li>
+    <li>I want a dashboard of fees collected, scores and discounts issued (10).</li>
   </ul>
   <h3><span class="num">2.4</span>Marketing team</h3>
   <ul>
@@ -422,14 +424,14 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">3.</span>How it works</h2>
   <p>Four ideas hold the product together:</p>
   <ol>
-    <li><b>Pay once, test monthly (by default).</b> By default the fee (₹100) is a lifetime registration that unlocks one attempt every calendar month. Admins can change what the fee covers and the attempt limit (9.2).</li>
+    <li><b>Pay once, test monthly (by default).</b> By default the fee (₹100) is a lifetime registration that unlocks one attempt every calendar month. Admins can change what the fee covers and the attempt limit (10.2).</li>
     <li><b>The score decides the discount.</b> Each target score unlocks one discount. Admins set the levers; no one approves individual discounts, and there are no exceptions.</li>
     <li><b>Results are instant.</b> Gradr sends the score back the moment the test is submitted, and the discount is active before the learner leaves the result page.</li>
-    <li><b>The CRM always knows.</b> The lead is created at registration and updated at every step (8.1).</li>
+    <li><b>The CRM always knows.</b> The lead is created at registration and updated at every step (9.1).</li>
   </ol>
 
   <h3><span class="num">3.1</span>End-to-end journey</h3>
-  <p>Each box is one step. The dashed lines show the update sent to OneCRM at that step (T1 to T6, detailed in 8.1).</p>
+  <p>Each box is one step. The dashed lines show the update sent to OneCRM at that step (T1 to T6, detailed in 9.1).</p>
   <div class="lifecycle"><svg viewBox="0 0 1040 446" role="img" aria-label="YDST journey across learner, YDST backend, payment gateway, Gradr and OneCRM" style="font-family:Inter,system-ui,sans-serif">
 <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6B7280"/></marker><marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2A4BD7"/></marker></defs>
 <rect x="4" y="11" width="1032" height="80" rx="10" fill="#F6F7FB" stroke="#E4E7EF"/>
@@ -528,11 +530,11 @@ section h2,section h3{scroll-margin-top:16px}
     </div>
     <div class="flow">
       <div class="flow-h">Other paths</div>
-      <div class="step s1"><b>Payment fails or is abandoned</b><span>Learner returns to the form with a retry button. Lead updated. Counsellor follow-up list (9).</span></div>
+      <div class="step s1"><b>Payment fails or is abandoned</b><span>Learner returns to the form with a retry button. Lead updated. Counsellor follow-up list (10).</span></div>
       <div class="step s1"><b>Paid but doesn't start the test</b><span>"Start test" link in SMS and email. Learner can start any time while an attempt is open.</span></div>
       <div class="step s1"><b>Scores below 31</b><span>No code. Result page shows when the next attempt opens (default: 1st of next month).</span></div>
       <div class="step s1"><b>Proctoring flags the attempt</b><span>Attempt is Void, no code. Counts towards the attempt limit.</span></div>
-      <div class="step s1"><b>Returning learner, next attempt</b><span>Logs in with OTP. Skips payment if their fee is still valid, otherwise pays again (5). Then goes to Gradr. <i class="tp">T4</i> onward.</span></div>
+      <div class="step s1"><b>Returning learner, next attempt</b><span>Signs in with OTP and lands on their profile (8). Skips payment if their fee is still valid, otherwise pays again (5). Then goes to Gradr. <i class="tp">T4</i> onward.</span></div>
     </div>
   </div>
 
@@ -547,7 +549,7 @@ section h2,section h3{scroll-margin-top:16px}
   </ul>
 
   <h3><span class="num">3.3</span>Discount levers</h3>
-  <p>Each discount has one target score. Admins set the levers in settings (9.2) without a code release. The table shows the <b>defaults</b>. A change applies to attempts submitted after it is saved (3.5).</p>
+  <p>Each discount has one target score. Admins set the levers in settings (10.2) without a code release. The table shows the <b>defaults</b>. A change applies to attempts submitted after it is saved (3.5).</p>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:24%"><col style="width:52%"></colgroup>
     <tr><th>Target score (default)</th><th>Discount (default)</th><th>Applies to</th></tr>
     <tr><td><b>51</b> or more</td><td><b>50%</b> off</td><td rowspan="3">First-semester tuition of the programme the learner tested for, at any of the 18 partner universities</td></tr>
@@ -558,7 +560,7 @@ section h2,section h3{scroll-margin-top:16px}
   <div id="calc-root"></div>
 
   <h3><span class="num">3.4</span>Learner stages</h3>
-  <p>One stage per learner, always the furthest step reached. The same stage name is sent to OneCRM as the YDST stage (8.2).</p>
+  <p>One stage per learner, always the furthest step reached. The same stage name is sent to OneCRM as the YDST stage (9.2).</p>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:46%"><col style="width:30%"></colgroup>
     <tr><th>Stage</th><th>Meaning</th><th>Set by</th></tr>
     <tr><td><span class="pill p-pend">Registered</span></td><td>OTP verified, form submitted, nothing paid</td><td>Registration (T1)</td></tr>
@@ -574,7 +576,7 @@ section h2,section h3{scroll-margin-top:16px}
   </table></div>
 
   <h3><span class="num">3.5</span>When settings change</h3>
-  <p>Admins can change the fee and the levers at any time (9.2). A change never reaches back into the past:</p>
+  <p>Admins can change the fee and the levers at any time (10.2). A change never reaches back into the past:</p>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:34%"><col style="width:66%"></colgroup>
     <tr><th>Who</th><th>What happens after a change</th></tr>
     <tr><td>Learner who already paid</td><td>Keeps what their payment covered when they paid. A lifetime payment stays lifetime even if the setting later becomes Each attempt or Fixed days. Never asked to pay the difference, never refunded part of it.</td></tr>
@@ -584,7 +586,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>Attempt already scored</td><td>Keeps its discount and code. Codes are never reissued or cancelled because levers changed.</td></tr>
     <tr><td>Attempt in progress</td><td>Scored with the levers live when it was <b>submitted</b>.</td></tr>
     <tr><td>Scholarship page copy</td><td>Fee, target scores and discounts update everywhere on the page within 5 minutes (4.2).</td></tr>
-    <tr><td>OneCRM</td><td>No bulk update. New touch points carry the fee paid and the settings version (8.2).</td></tr>
+    <tr><td>OneCRM</td><td>No bulk update. New touch points carry the fee paid and the settings version (9.2).</td></tr>
   </table></div>
 </section>
 
@@ -592,7 +594,7 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">4.</span>Scholarship page and registration</h2>
   <div class="callout info">
     <div class="ttl">↔ How it connects</div>
-    Creates the learner and the lead (T1, 8.1), then hands over to payment (5). Prototype: <a href="https://abhinavthak.github.io/ydst-scholarship-prototype/#register" target="_blank" rel="noopener">registration form</a>.
+    Creates the learner and the lead (T1, 9.1), then hands over to payment (5). Prototype: <a href="https://abhinavthak.github.io/ydst-scholarship-prototype/#register" target="_blank" rel="noopener">registration form</a>.
   </div>
   <h3><span class="num">4.1</span>Entry points</h3>
   <ul>
@@ -601,7 +603,7 @@ section h2,section h3{scroll-margin-top:16px}
     <li>Every "Register" button on the page opens the same registration form in a pop-up.</li>
   </ul>
   <h3><span class="num">4.2</span>Page copy that must match the rules</h3>
-  <p>These figures appear on the page and must come from settings (9.2), not be typed into the copy or baked into images: registration fee, what the fee covers, target scores and discounts (3.3), test length (60 questions, 60 minutes), attempt limit, code validity (30 days), number of partner universities.</p>
+  <p>These figures appear on the page and must come from settings (10.2), not be typed into the copy or baked into images: registration fee, what the fee covers, target scores and discounts (3.3), test length (60 questions, 60 minutes), attempt limit, code validity (30 days), number of partner universities.</p>
   <h3><span class="num">4.3</span>Registration form fields</h3>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:14%"><col style="width:62%"></colgroup>
     <tr><th>Field</th><th>Required</th><th>Rules</th></tr>
@@ -735,13 +737,86 @@ section h2,section h3{scroll-margin-top:16px}
   </table></div>
 </section>
 
+<section id="profile">
+  <h2><span class="num">8.</span>Learner profile</h2>
+  <div class="callout info">
+    <div class="ttl">↔ How it connects</div>
+    Created at registration (4). Shows the learner's fee (5), attempts (6) and codes (7) in one place, and is where a returning learner starts their next attempt. Edits update the lead in OneCRM (T7, 9.1).
+  </div>
+  <p>Every learner has one profile, tied to their OTP-verified mobile number. It is the learner's home after registration: what they've paid, how they scored, their scholarship code and what to do next.</p>
+
+  <h3><span class="num">8.1</span>Access</h3>
+  <ul>
+    <li><b>Sign in</b> in the scholarship page header opens a mobile + OTP sign-in. After sign-in the header shows the learner's initials and a <b>My profile</b> link.</li>
+    <li>A learner is signed in automatically after registration, and after returning from Gradr.</li>
+    <li>Links in SMS and email (receipt, Start test, result, code reminders) open the profile after OTP if the session has ended.</li>
+    <li>Session lasts 30 days on the same device. <b>Sign out</b> is in the profile menu. <span class="tag gap">Session length to confirm</span></li>
+  </ul>
+
+  <h3><span class="num">8.2</span>Layout</h3>
+  <p>Blocks from top to bottom. On phones they stack in the same order.</p>
+  <div class="wdg">
+    <div class="wdg-h"><span class="wid">P1</span><b>Header</b><span class="wj">Name, masked mobile (+91 98•••••210), programme and paper (e.g. MBA · Master's paper), <b>Edit details</b>.</span></div>
+  </div>
+  <div class="wdg">
+    <div class="wdg-h"><span class="wid">P2</span><b>Next step</b><span class="wj">One card with one button, chosen by the learner's state. Always the first thing they see.</span></div>
+    <div class="wrap"><table class="fixed wt"><colgroup><col style="width:34%"><col style="width:40%"><col style="width:26%"></colgroup>
+      <tr><th>Learner's state</th><th>Card says</th><th>Button</th></tr>
+      <tr><td>Registered, not paid, or fee no longer valid</td><td>"Pay ₹&lt;fee&gt; to take the test" with what the fee covers (10.2)</td><td><span class="cta">Pay ₹&lt;fee&gt;</span></td></tr>
+      <tr><td>Payment pending</td><td>"Your bank is still confirming your payment"</td><td><span class="cta">Refresh</span></td></tr>
+      <tr><td>Paid, attempt open</td><td>"Your test is ready. 60 questions, 60 minutes."</td><td><span class="cta">Start test</span></td></tr>
+      <tr><td>Test started on Gradr, not submitted</td><td>"Your test is in progress"</td><td><span class="cta">Resume test</span></td></tr>
+      <tr><td>Attempt limit used</td><td>"Your next attempt opens on &lt;date&gt;"</td><td>None</td></tr>
+      <tr><td>Holds an active code</td><td>"You've unlocked &lt;X&gt;% off. Use it by &lt;date&gt;."</td><td><span class="cta">Explore universities</span></td></tr>
+      <tr><td>Enrolled</td><td>"You're enrolled at &lt;university&gt; with &lt;X&gt;% off"</td><td>None</td></tr>
+      <tr><td>Refunded</td><td>"Your payment was refunded. Pay again to take the test."</td><td><span class="cta">Pay ₹&lt;fee&gt;</span></td></tr>
+    </table></div>
+  </div>
+  <div class="wdg">
+    <div class="wdg-h"><span class="wid">P3</span><b>Scholarship code</b><span class="wj">Shown only with an active code. The best active code (3.2): discount, code with a copy button, programme, expiry date and days left. Other active codes are listed below it.</span></div>
+  </div>
+  <div class="wdg">
+    <div class="wdg-h"><span class="wid">P4</span><b>Test history</b><span class="wj">One row per attempt, newest first.</span></div>
+    <div class="wrap"><table class="fixed wt"><colgroup><col style="width:22%"><col style="width:18%"><col style="width:16%"><col style="width:20%"><col style="width:24%"></colgroup>
+      <tr><th>Date</th><th>Paper</th><th>Score</th><th>Result</th><th>Code</th></tr>
+      <tr><td>15 Nov 2026</td><td>Master's</td><td>46/60</td><td>30% off</td><td><code>YDPG-K7Q2M</code> · Active</td></tr>
+      <tr><td>12 Oct 2026</td><td>Master's</td><td>29/60</td><td>No discount</td><td>—</td></tr>
+      <tr><td>3 Sep 2026</td><td>Master's</td><td>—</td><td>Void · proctoring</td><td>—</td></tr>
+    </table></div>
+  </div>
+  <div class="wdg">
+    <div class="wdg-h"><span class="wid">P5</span><b>Payments and receipts</b><span class="wj">One row per payment: date, amount, status (Paid, Failed, Refunded), transaction ID and <b>Download receipt</b> (PDF with GST details) for paid rows. Failed attempts are shown so learners can see nothing was charged.</span></div>
+  </div>
+  <div class="wdg">
+    <div class="wdg-h"><span class="wid">P6</span><b>Details</b><span class="wj">The fields in 8.3, with <b>Save</b>.</span></div>
+  </div>
+
+  <h3><span class="num">8.3</span>Fields</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:18%"><col style="width:60%"></colgroup>
+    <tr><th>Field</th><th>Can the learner edit it?</th><th>Notes</th></tr>
+    <tr><td>Mobile (+91)</td><td>No</td><td>The unique ID. A new number means a new profile and a new registration; support does not move profiles.</td></tr>
+    <tr><td>Name</td><td>Yes</td><td>Shown on receipts and the result page.</td></tr>
+    <tr><td>Email</td><td>Yes</td><td>Where receipts, results and codes are sent. Changing it doesn't resend old emails.</td></tr>
+    <tr><td>Level and programme</td><td>Yes, between attempts</td><td>Changes the paper for the next attempt (3.2). Locked while a test is in progress. Existing codes stay tied to the programme they were earned for.</td></tr>
+    <tr><td>Contact consent</td><td>Yes</td><td>Turning it off stops WhatsApp and promotional SMS. Receipts, results and OTPs are still sent.</td></tr>
+  </table></div>
+
+  <h3><span class="num">8.4</span>Requirements</h3>
+  <ul>
+    <li>Everything on the profile comes from the YDST backend, the same data the admin dashboard uses (10). Nothing is read from Gradr in the browser.</li>
+    <li>Saving name, email, programme or consent sends a profile update to OneCRM (T7).</li>
+    <li>The profile never shows section scores, other learners, or internal notes.</li>
+    <li>A learner with no profile who opens a profile link is sent to registration (4).</li>
+  </ul>
+</section>
+
 <section id="crm">
-  <h2><span class="num">8.</span>Lead sync to OneCRM</h2>
+  <h2><span class="num">9.</span>Lead sync to OneCRM</h2>
   <div class="callout info">
     <div class="ttl">↔ How it connects</div>
     Every touch point in the journey (3.1) creates or updates the same lead in OneCRM at app.onecrm.co.in, for upGrad. Counsellors work from that lead.
   </div>
-  <h3><span class="num">8.1</span>Touch points</h3>
+  <h3><span class="num">9.1</span>Touch points</h3>
   <div class="wrap"><table class="fixed sec-table"><colgroup><col style="width:7%"><col style="width:21%"><col style="width:16%"><col style="width:18%"><col style="width:38%"></colgroup>
     <tr><th>#</th><th>Touch point</th><th>CRM action</th><th>YDST stage</th><th>Fields sent (besides mobile)</th></tr>
     <tr><td><b>T1</b></td><td>OTP verified and form submitted</td><td>Create lead, or update if the mobile exists</td><td>Registered</td><td>Name, email, level, programme, UTM source/medium/campaign, landing URL, consent time</td></tr>
@@ -750,9 +825,9 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><b>T4</b></td><td>Redirected to Gradr</td><td>Update</td><td>Test started</td><td>Attempt ID, attempt month, paper, start time</td></tr>
     <tr><td><b>T5</b></td><td>Result received</td><td>Update</td><td>Not qualified, or (with T6) Discount active</td><td>Score /60, discount earned (0/15/30/50), proctoring status, attempt count, best score</td></tr>
     <tr><td><b>T6</b></td><td>Discount activated</td><td>Update + assign to counsellor</td><td>Discount active</td><td>Scholarship code, discount %, code expiry date</td></tr>
-    <tr><td><b>T7</b></td><td>Later changes</td><td>Update</td><td>Enrolled, Code expired or Refunded</td><td>Code status, enrolment date, university, refund date</td></tr>
+    <tr><td><b>T7</b></td><td>Later changes, and profile edits (8)</td><td>Update</td><td>Enrolled, Code expired or Refunded; unchanged for profile edits</td><td>Code status, enrolment date, university, refund date; edited name, email, programme, consent</td></tr>
   </table></div>
-  <h3><span class="num">8.2</span>Lead fields</h3>
+  <h3><span class="num">9.2</span>Lead fields</h3>
   <p>New custom fields on the OneCRM lead, all prefixed <code>ydst_</code>. <span class="tag gap">Field names to confirm with OneCRM</span></p>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:20%"><col style="width:48%"></colgroup>
     <tr><th>Field</th><th>Type</th><th>Values</th></tr>
@@ -769,7 +844,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><code>ydst_next_attempt</code></td><td>Date</td><td>When the learner can next test, from the attempt limit</td></tr>
     <tr><td><code>ydst_fee_valid_until</code></td><td>Date</td><td>Empty for Lifetime. Last day the payment covers for Fixed days. Empty after each attempt for Each attempt.</td></tr>
   </table></div>
-  <h3><span class="num">8.3</span>Delivery rules</h3>
+  <h3><span class="num">9.3</span>Delivery rules</h3>
   <ul>
     <li><b>Matching:</b> the lead is found by mobile number. Never create a second lead for the same mobile.</li>
     <li><b>Existing lead:</b> if the mobile already exists in OneCRM from another source, update it and add YDST fields. Don't change its owner, except at T6 if it has none.</li>
@@ -784,22 +859,22 @@ section h2,section h3{scroll-margin-top:16px}
 </section>
 
 <section id="admin">
-  <h2><span class="num">9.</span>Admin dashboard</h2>
+  <h2><span class="num">10.</span>Admin dashboard</h2>
   <p>An internal dashboard for the business, finance and sales teams. Prototype with sample data: <a href="https://abhinavthak.github.io/ydst-payments-dashboard/" target="_blank" rel="noopener">ydst-payments-dashboard</a>.</p>
-  <h3><span class="num">9.1</span>Tabs</h3>
+  <h3><span class="num">10.1</span>Tabs</h3>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
     <tr><th>Tab</th><th>What it shows</th></tr>
     <tr><td>Overview</td><td>Funnel (started → paid → tested → scored 31+ → enrolled), best-score mix, score distribution with the three target scores, and follow-up lists: payment not completed, paid but no test, code expiring soon, best score 27 to 30.</td></tr>
     <tr><td>Registration fees</td><td>One row per learner with fee status and every payment attempt (opened time, amount, result, gateway response, settled time, transaction ID). Filters, status tabs, CSV export, refresh payment status.</td></tr>
     <tr><td>Test results</td><td>One row per attempt with score, discount, code and code status. Filters by paper, month, code status; tabs by discount; CSV export.</td></tr>
-    <tr><td>Learner profile</td><td>Opens from any tab. Journey, fee history and every attempt for one learner.</td></tr>
-    <tr><td>Settings</td><td>Registration fee and discount levers (9.2), with change history.</td></tr>
+    <tr><td>Learner details</td><td>Opens from any tab. Journey, fee history and every attempt for one learner. The admin view of the learner's profile (8), plus internal fields.</td></tr>
+    <tr><td>Settings</td><td>Registration fee and discount levers (10.2), with change history.</td></tr>
   </table></div>
   <ul>
     <li>Access by login, with roles. Only finance can see transaction IDs and mark payments refunded (5.3). Duplicate payments appear in a <b>Needs refund</b> list on the Registration fees tab. <span class="tag gap">Roles to confirm</span></li>
   </ul>
 
-  <h3><span class="num">9.2</span>Scholarship settings</h3>
+  <h3><span class="num">10.2</span>Scholarship settings</h3>
   <p>One settings form for the whole programme. Saving creates a new settings version that goes live at once (3.5).</p>
   <div class="wdg">
     <div class="wdg-h"><b>Registration fee</b><span class="whh">Settings</span></div>
@@ -840,8 +915,8 @@ section h2,section h3{scroll-margin-top:16px}
 </section>
 
 <section id="edge-cases">
-  <h2><span class="num">10.</span>Edge cases and acceptance criteria</h2>
-  <h3><span class="num">10.1</span>Edge cases</h3>
+  <h2><span class="num">11.</span>Edge cases and acceptance criteria</h2>
+  <h3><span class="num">11.1</span>Edge cases</h3>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:44%"><col style="width:56%"></colgroup>
     <tr><th>Situation</th><th>What happens</th></tr>
     <tr><td>Learner closes the tab after paying, before the redirect</td><td>Payment is still confirmed by webhook. SMS and email carry the <b>Start test</b> link.</td></tr>
@@ -853,7 +928,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>Learner scores 52, then 44 on the next attempt</td><td>Both codes are issued. The 50% code stays the best active code until it expires.</td></tr>
     <tr><td>OneCRM is unavailable for an hour</td><td>The learner journey continues. Updates queue and deliver in order when OneCRM is back.</td></tr>
   </table></div>
-  <h3><span class="num">10.2</span>Acceptance criteria</h3>
+  <h3><span class="num">11.2</span>Acceptance criteria</h3>
   <p class="mini">Each line passes or fails. Given = starting point; When = action; Then = expected result.</p>
   <h4 style="font-size:14.5px;margin:18px 0 6px">Registration and payment</h4>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
@@ -891,6 +966,16 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>Attempt limit is 1 per rolling 30 days and a learner tested on 5 Nov at 10:00 IST</td><td>they tap Start test</td><td>it opens on 5 Dec at 10:00 IST; before that they see that date</td></tr>
     <tr><td>A user without the Programme admin role</td><td>opens Settings</td><td>they can see values and history but can't edit</td></tr>
   </table></div>
+  <h4 style="font-size:14.5px;margin:18px 0 6px">Learner profile</h4>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
+    <tr><th>Given</th><th>When</th><th>Then</th></tr>
+    <tr><td>A registered learner on a new device</td><td>signs in with mobile and OTP</td><td>they land on their profile with the right Next step card</td></tr>
+    <tr><td>A learner with an active 30% code</td><td>opens the profile</td><td>P3 shows the code, 30% off and the expiry date, with a copy button</td></tr>
+    <tr><td>A learner who has used the attempt limit</td><td>opens the profile</td><td>P2 shows when the next attempt opens, with no Start test button</td></tr>
+    <tr><td>A learner with a test in progress</td><td>tries to change programme</td><td>programme is locked with "You can change this after your test"</td></tr>
+    <tr><td>A learner changes their email</td><td>taps Save</td><td>the profile updates and T7 sends the new email to OneCRM</td></tr>
+    <tr><td>A paid learner</td><td>taps Download receipt</td><td>a PDF receipt with amount, GST and transaction ID downloads</td></tr>
+  </table></div>
   <h4 style="font-size:14.5px;margin:18px 0 6px">CRM sync</h4>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
     <tr><th>Given</th><th>When</th><th>Then</th></tr>
@@ -901,18 +986,18 @@ section h2,section h3{scroll-margin-top:16px}
 </section>
 
 <section id="data">
-  <h2><span class="num">11.</span>Data and integrations</h2>
+  <h2><span class="num">12.</span>Data and integrations</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:76%"></colgroup>
     <tr><th>System</th><th>Role</th></tr>
     <tr><td>YDST backend</td><td>Owns learners, payments, attempts, results and codes. Sends every touch point to OneCRM. New service.</td></tr>
     <tr><td>Payment gateway</td><td>upGrad's existing gateway. Creates orders, sends signed webhooks, supports status checks. Refunds are issued by finance in its dashboard, not by the YDST backend (5.3).</td></tr>
     <tr><td>Gradr</td><td>Creates attempts, runs and proctors the test, scores it, and sends the result callback. Needs: create-attempt API, signed redirect, result webhook, result lookup API.</td></tr>
-    <tr><td>OneCRM</td><td>Lead create and update API with custom fields (8.2), and counsellor assignment at T6.</td></tr>
+    <tr><td>OneCRM</td><td>Lead create and update API with custom fields (9.2), and counsellor assignment at T6.</td></tr>
     <tr><td>Fee system</td><td>Receives scholarship codes and applies the discount to first-semester tuition. Reports when a code is used (T7).</td></tr>
     <tr><td>OTP, SMS, email, WhatsApp</td><td>Existing providers for OTP and the messages in 7.4.</td></tr>
-    <tr><td>Settings</td><td>Admin-editable: fee amount, what the fee covers, attempt limit and discount levers (9.2), versioned. Fixed in v1 (change needs a release): code validity (30 days).</td></tr>
+    <tr><td>Settings</td><td>Admin-editable: fee amount, what the fee covers, attempt limit and discount levers (10.2), versioned. Fixed in v1 (change needs a release): code validity (30 days).</td></tr>
   </table></div>
-  <h3><span class="num">11.1</span>Open questions</h3>
+  <h3><span class="num">12.1</span>Open questions</h3>
   <ol class="oq-list">
     <li><b>Gradr:</b> exact APIs for creating attempts, the redirect token format, the result webhook payload and signature, and the result lookup.</li>
     <li><b>OneCRM:</b> lead API, custom field names, and how leads are assigned to counsellors at T6.</li>
@@ -923,11 +1008,11 @@ section h2,section h3{scroll-margin-top:16px}
 </section>
 
 <section id="release">
-  <h2><span class="num">12.</span>Release plan</h2>
+  <h2><span class="num">13.</span>Release plan</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:14%"><col style="width:86%"></colgroup>
     <tr><th>Phase</th><th>What ships</th></tr>
-    <tr><td>v1</td><td>Scholarship page, registration with OTP, ₹100 payment, Gradr handoff and result callback, discount codes in the fee system, OneCRM touch points T1 to T7, result page, SMS and email messages, settings for fee, fee validity, attempt limit and discount levers (9.2).</td></tr>
-    <tr><td>v1.1</td><td>Admin dashboard (9), WhatsApp reminders, counsellor follow-up lists.</td></tr>
+    <tr><td>v1</td><td>Scholarship page, registration with OTP, ₹100 payment, Gradr handoff and result callback, discount codes in the fee system, learner profile (8), OneCRM touch points T1 to T7, result page, SMS and email messages, settings for fee, fee validity, attempt limit and discount levers (10.2).</td></tr>
+    <tr><td>v1.1</td><td>Admin dashboard (10), WhatsApp reminders, counsellor follow-up lists.</td></tr>
     <tr><td>v2</td><td>Section-wise score report for learners, practice tests, scheduled settings changes and time-limited campaigns (e.g. bonus discount weeks).</td></tr>
   </table></div>
 </section>
@@ -945,6 +1030,10 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><code>otp_sent</code></td><td>OTP sent</td><td><code>level</code></td><td>pg, ug</td></tr>
     <tr><td><code>otp_verified</code></td><td>OTP matches</td><td><code>attempts</code></td><td>Number of tries</td></tr>
     <tr><td><code>registration_submitted</code></td><td>Form submitted</td><td><code>programme</code></td><td>MBA, MCA … BSc</td></tr>
+    <tr><td colspan="4" class="mini"><b>Learner profile</b></td></tr>
+    <tr><td><code>profile_viewed</code></td><td>Profile loads</td><td><code>next_step</code></td><td>pay, start_test, resume, wait, use_code, enrolled, refunded</td></tr>
+    <tr><td><code>profile_updated</code></td><td>Learner saves details</td><td><code>fields_changed</code></td><td>name, email, programme, consent</td></tr>
+    <tr><td><code>receipt_downloaded</code></td><td>Download receipt tapped</td><td><code>order_id</code></td><td>Order ID</td></tr>
     <tr><td colspan="4" class="mini"><b>Payment</b></td></tr>
     <tr><td><code>checkout_opened</code></td><td>Gateway checkout opens</td><td><code>order_id</code></td><td>Order ID</td></tr>
     <tr><td rowspan="2"><code>payment_result</code></td><td rowspan="2">Backend confirms the outcome</td><td><code>status</code></td><td>success, failed, abandoned</td></tr>
@@ -970,9 +1059,10 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">B.</span>Appendix: change log</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
     <tr><th>Date</th><th>Change</th></tr>
+    <tr><td>15 Nov 2026 (v5)</td><td>Learner profile added as section 8 (access, layout P1 to P6, fields, requirements). Profile edits sent to OneCRM as T7. Admin "Learner profile" renamed "Learner details". Later sections renumbered (9 to 13).</td></tr>
     <tr><td>15 Nov 2026 (v4)</td><td>Refunds confirmed as manual (5.3): finance refunds in the gateway and records it with Mark refunded; duplicate payments are no longer refunded automatically but listed under Needs refund. Acceptance criteria added.</td></tr>
-    <tr><td>15 Nov 2026 (v3)</td><td>"Pay once, test monthly" made configurable: what the fee covers (Lifetime, Each attempt, Fixed days) and the attempt limit (attempts per calendar month, calendar week or rolling days) added to settings (9.2), with change rules (3.5), edge cases, acceptance criteria and a new lead field (8.2).</td></tr>
-    <tr><td>15 Nov 2026 (v2)</td><td>Registration fee and score-to-discount levers made configurable in admin settings (9.2), with versioning, change rules (3.5), editable calculator (3.3), new lead fields (8.2) and acceptance criteria (10.2).</td></tr>
+    <tr><td>15 Nov 2026 (v3)</td><td>"Pay once, test monthly" made configurable: what the fee covers (Lifetime, Each attempt, Fixed days) and the attempt limit (attempts per calendar month, calendar week or rolling days) added to settings (10.2), with change rules (3.5), edge cases, acceptance criteria and a new lead field (9.2).</td></tr>
+    <tr><td>15 Nov 2026 (v2)</td><td>Registration fee and score-to-discount levers made configurable in admin settings (10.2), with versioning, change rules (3.5), editable calculator (3.3), new lead fields (9.2) and acceptance criteria (11.2).</td></tr>
     <tr><td>15 Nov 2026</td><td>First draft: journey from scholarship page to discount activation, ₹100 lifetime fee, Gradr handoff, discount levers (31/41/51), OneCRM touch points T1 to T7, admin dashboard.</td></tr>
   </table></div>
 </section>
@@ -1094,7 +1184,7 @@ section h2,section h3{scroll-margin-top:16px}
   const disc=sc=>{let d=0; sorted().forEach(l=>{ if(sc>=l.t) d=l.d; }); return d;};
   function settingsHTML(){
     const rows=cfg.levers.map((l,k)=>'<tr><td>Lever '+(k+1)+'</td><td><input type="number" min="1" max="60" data-k="'+k+'" data-f="t" value="'+l.t+'" aria-label="Lever '+(k+1)+' target score"></td><td><input type="number" min="1" max="100" data-k="'+k+'" data-f="d" value="'+l.d+'" aria-label="Lever '+(k+1)+' discount"></td><td>'+(cfg.levers.length>1?'<button type="button" class="rm" data-rm="'+k+'" aria-label="Remove lever '+(k+1)+'">Remove</button>':'')+'</td></tr>').join('');
-    return '<div class="cset"><div class="cset-h"><b>Scholarship settings</b><span class="mini">What the admin enters in 9.2. Edit any value to see the effect.</span><button type="button" data-reset="1">Reset to defaults</button></div>'+
+    return '<div class="cset"><div class="cset-h"><b>Scholarship settings</b><span class="mini">What the admin enters in 10.2. Edit any value to see the effect.</span><button type="button" data-reset="1">Reset to defaults</button></div>'+
       '<div class="cset-row" style="margin:0 0 12px"><label>Registration fee (₹)<input type="number" min="1" max="10000" id="cs-fee" value="'+cfg.fee+'"></label><div class="cset-ro"><span>Pay button reads</span><b>Pay '+inr(cfg.fee||0)+' &amp; Start Test</b></div></div>'+
       '<div class="wrap"><table class="cset-t"><tr><th></th><th>Target score</th><th>Discount (%)</th><th></th></tr>'+rows+'</table></div>'+
       (cfg.levers.length<5?'<button type="button" class="add" data-add="1">+ Add lever</button>':'')+
