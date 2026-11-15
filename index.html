@@ -310,13 +310,14 @@ section h2,section h3{scroll-margin-top:16px}
       <dt>CRM</dt><dd>The lead is created in OneCRM at registration and updated at every later step, so counsellors always see where the learner is (8).</dd>
       <dt>Built on</dt><dd>YDST scholarship page (existing prototype), upGrad payment gateway, Gradr test platform, OneCRM, fee system, OTP/SMS.</dd>
       <dt>Key risks</dt><dd>Gradr's result callback must be reliable and secure, or discounts can't be activated in real time (6, 7). Lead updates to OneCRM must never be lost (8.3).</dd>
-      <dt>Still to settle</dt><dd>Gradr and OneCRM API details, refund policy, and the code validity period (see the open questions in 11.1).</dd>
+      <dt>Still to settle</dt><dd>Gradr and OneCRM API details, when a refund is allowed, and the code validity period (see the open questions in 11.1).</dd>
     </dl>
   </div>
   <div class="whatsnew">
     <h4>What changed in this version · 15 Nov 2026</h4>
     <ul>
       <li><b>Registration fee and discount levers are now configurable</b> by admins in the dashboard (9.2). ₹100 and 31/41/51 → 15/30/50% are the defaults.</li>
+      <li><b>Refunds are manual.</b> Finance refunds in the payment gateway and records it in the admin dashboard. Nothing is refunded automatically, including duplicate payments (5.3).</li>
       <li><b>"Pay once, test monthly" is now configurable too.</b> Admins choose what the fee covers (lifetime, each attempt, or a number of days) and the attempt limit (how many attempts per calendar month, calendar week or rolling days). Lifetime fee and 1 attempt per calendar month are the defaults (3.2, 9.2).</li>
       <li>New rules for what a change affects, and what it never touches (3.5). Each payment and attempt records the settings it used.</li>
       <li>The score calculator in 3.3 now lets you edit the levers, and checks them the way the settings form will.</li>
@@ -641,12 +642,26 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>Failed</td><td>"Payment didn't go through. No money was taken." <b>Try again</b></td><td>Stage → Payment failed. T3 with failure reason.</td></tr>
     <tr><td>Pending</td><td>"Your bank is still confirming. We'll message you as soon as it's done."</td><td>Checks status every 2 minutes for 30 minutes, then marks it failed. A late success still marks it paid.</td></tr>
     <tr><td>Abandoned</td><td>Form stays filled, with a <b>Pay ₹100</b> button</td><td>No result after 30 minutes → Payment failed (abandoned). T3.</td></tr>
-    <tr><td>Paid twice</td><td>Nothing extra</td><td>The second payment is refunded automatically within 7 days.</td></tr>
+    <tr><td>Paid twice</td><td>Nothing extra</td><td>The second payment is flagged as a duplicate in the admin dashboard for finance to refund manually (5.3). Only one payment counts.</td></tr>
   </table></div>
   <h3><span class="num">5.3</span>Refunds</h3>
+  <p>Refunds are <b>manual</b>. No refund is ever issued automatically by the system, including for duplicate payments.</p>
+  <ol>
+    <li>A learner asks for a refund through support, or the dashboard flags a duplicate payment.</li>
+    <li>Finance checks the request and issues the refund in the payment gateway's dashboard.</li>
+    <li>Finance records it in the admin dashboard: learner → payment → <b>Mark refunded</b>, with the gateway refund ID, amount and reason (duplicate, learner request, other).</li>
+    <li>The system then updates the learner and sends T7 to OneCRM.</li>
+  </ol>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tr><th>Refund of</th><th>What happens</th></tr>
+    <tr><td>The learner's only valid payment</td><td>Stage → Refunded. The learner can't start new attempts until they pay again. Scholarship codes already issued stay valid. <span class="tag gap">To confirm</span></td></tr>
+    <tr><td>A duplicate payment</td><td>Only that payment is marked refunded. The learner's registration and attempts are unchanged.</td></tr>
+    <tr><td>An attempt in progress</td><td>The attempt finishes and is scored as normal. The refund blocks only the next attempt.</td></tr>
+  </table></div>
   <ul>
-    <li>Refunds are manual, by finance, only before the first attempt is submitted. <span class="tag gap">To confirm</span></li>
-    <li>A refund sets the stage to Refunded and sends T7. Codes already issued stay valid. <span class="tag gap">To confirm</span></li>
+    <li><b>Who can refund:</b> only the Finance role can use <b>Mark refunded</b>. The dashboard shows who marked it and when. <span class="tag gap">Roles to confirm</span></li>
+    <li><b>When a refund is allowed:</b> the policy (e.g. only before the first attempt is submitted) is set by finance and shown in the Terms. <span class="tag gap">Policy to confirm</span></li>
+    <li><b>Partial refunds:</b> not supported. A refund is always the full amount of one payment.</li>
   </ul>
   <div class="callout ok">
     <div class="ttl">⚙ Backend requirement</div>
@@ -781,7 +796,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>Settings</td><td>Registration fee and discount levers (9.2), with change history.</td></tr>
   </table></div>
   <ul>
-    <li>Access by login, with roles. Only finance can see transaction IDs and start refunds. <span class="tag gap">Roles to confirm</span></li>
+    <li>Access by login, with roles. Only finance can see transaction IDs and mark payments refunded (5.3). Duplicate payments appear in a <b>Needs refund</b> list on the Registration fees tab. <span class="tag gap">Roles to confirm</span></li>
   </ul>
 
   <h3><span class="num">9.2</span>Scholarship settings</h3>
@@ -847,6 +862,9 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>A learner at checkout</td><td>the gateway webhook confirms success</td><td>stage is Paid, a receipt is sent, T3 reaches OneCRM, and the learner is redirected to Gradr</td></tr>
     <tr><td>A learner at checkout</td><td>the browser shows success but no webhook arrives</td><td>the backend checks the status with the gateway before marking Paid</td></tr>
     <tr><td>A learner who has already paid</td><td>registers again with the same mobile</td><td>they are not asked to pay and see Start test or the next attempt date</td></tr>
+    <tr><td>A learner pays twice for one order</td><td>both webhooks arrive</td><td>one payment counts, the second is listed under Needs refund, and nothing is refunded automatically</td></tr>
+    <tr><td>Finance has refunded a learner's only payment in the gateway</td><td>they use Mark refunded with the refund ID</td><td>stage becomes Refunded, T7 reaches OneCRM, and Start test asks the learner to pay again</td></tr>
+    <tr><td>A user without the Finance role</td><td>opens a payment</td><td>Mark refunded is not shown</td></tr>
   </table></div>
   <h4 style="font-size:14.5px;margin:18px 0 6px">Test and result</h4>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
@@ -887,7 +905,7 @@ section h2,section h3{scroll-margin-top:16px}
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:76%"></colgroup>
     <tr><th>System</th><th>Role</th></tr>
     <tr><td>YDST backend</td><td>Owns learners, payments, attempts, results and codes. Sends every touch point to OneCRM. New service.</td></tr>
-    <tr><td>Payment gateway</td><td>upGrad's existing gateway. Creates orders, sends signed webhooks, supports status checks and refunds.</td></tr>
+    <tr><td>Payment gateway</td><td>upGrad's existing gateway. Creates orders, sends signed webhooks, supports status checks. Refunds are issued by finance in its dashboard, not by the YDST backend (5.3).</td></tr>
     <tr><td>Gradr</td><td>Creates attempts, runs and proctors the test, scores it, and sends the result callback. Needs: create-attempt API, signed redirect, result webhook, result lookup API.</td></tr>
     <tr><td>OneCRM</td><td>Lead create and update API with custom fields (8.2), and counsellor assignment at T6.</td></tr>
     <tr><td>Fee system</td><td>Receives scholarship codes and applies the discount to first-semester tuition. Reports when a code is used (T7).</td></tr>
@@ -898,7 +916,7 @@ section h2,section h3{scroll-margin-top:16px}
   <ol class="oq-list">
     <li><b>Gradr:</b> exact APIs for creating attempts, the redirect token format, the result webhook payload and signature, and the result lookup.</li>
     <li><b>OneCRM:</b> lead API, custom field names, and how leads are assigned to counsellors at T6.</li>
-    <li><b>Refunds:</b> are refunds allowed, and up to when?</li>
+    <li><b>Refund policy:</b> refunds are manual (5.3), but when is a learner allowed one, and do issued codes stay valid after a refund?</li>
     <li><b>Code validity:</b> is 30 days right, and can a counsellor extend it?</li>
     <li><b>GST:</b> is ₹100 inclusive of GST, and what invoice does the learner get?</li>
   </ol>
@@ -938,6 +956,8 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><code>discount_activated</code></td><td>Code issued</td><td><code>discount_pct</code></td><td>15, 30, 50</td></tr>
     <tr><td><code>code_copied</code></td><td>Copy tapped on result page</td><td><code>discount_pct</code></td><td>15, 30, 50</td></tr>
     <tr><td colspan="4" class="mini"><b>Server-side CRM events</b></td></tr>
+    <tr><td rowspan="2"><code>payment_refunded</code></td><td rowspan="2">Finance uses Mark refunded</td><td><code>reason</code></td><td>duplicate, learner_request, other</td></tr>
+    <tr><td><code>amount</code></td><td>₹ value</td></tr>
     <tr><td rowspan="2"><code>settings_saved</code></td><td rowspan="2">Admin saves settings</td><td><code>version</code></td><td>New settings version</td></tr>
     <tr><td><code>changed</code></td><td>fee, levers</td></tr>
     <tr><td rowspan="2"><code>crm_sync</code></td><td rowspan="2">Touch point delivered to OneCRM</td><td><code>touch_point</code></td><td>T1 to T7</td></tr>
@@ -950,6 +970,7 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">B.</span>Appendix: change log</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
     <tr><th>Date</th><th>Change</th></tr>
+    <tr><td>15 Nov 2026 (v4)</td><td>Refunds confirmed as manual (5.3): finance refunds in the gateway and records it with Mark refunded; duplicate payments are no longer refunded automatically but listed under Needs refund. Acceptance criteria added.</td></tr>
     <tr><td>15 Nov 2026 (v3)</td><td>"Pay once, test monthly" made configurable: what the fee covers (Lifetime, Each attempt, Fixed days) and the attempt limit (attempts per calendar month, calendar week or rolling days) added to settings (9.2), with change rules (3.5), edge cases, acceptance criteria and a new lead field (8.2).</td></tr>
     <tr><td>15 Nov 2026 (v2)</td><td>Registration fee and score-to-discount levers made configurable in admin settings (9.2), with versioning, change rules (3.5), editable calculator (3.3), new lead fields (8.2) and acceptance criteria (10.2).</td></tr>
     <tr><td>15 Nov 2026</td><td>First draft: journey from scholarship page to discount activation, ₹100 lifetime fee, Gradr handoff, discount levers (31/41/51), OneCRM touch points T1 to T7, admin dashboard.</td></tr>
