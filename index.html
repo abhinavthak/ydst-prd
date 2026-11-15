@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<title>YDST Scholarship Test PRD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14213D; --txt:#33394A; --mute:#6B7280; --faint:#9AA1B1;
+  --paper:#FFFFFF; --bg:#F6F7FB; --line:#E4E7EF; --line2:#EDEFF5;
+  --teal:#0E8E88; --indigo:#2E2A83; --accent:#2A4BD7;
+  --info-bg:#EFF5FF; --info-bd:#C7DBFF; --info-tx:#1D4ED8;
+  --ok-bg:#EAF7EE; --ok-bd:#BCE4C7; --ok-tx:#15803D;
+  --warn-bg:#FFF7E6; --warn-bd:#F5DE9E; --warn-tx:#92660C;
+  --new-bg:#F3EEFF; --new-bd:#DACBFB; --new-tx:#5B32C4;
+  --code-bg:#F4F5F9;
+  --r:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:Sora,Inter,sans-serif;color:var(--ink);letter-spacing:-0.01em;margin:0}
+code,.mono{font-family:"JetBrains Mono",monospace}
+a{color:var(--accent)}
+.hero{background:linear-gradient(115deg,#14ACA3 0%,#1C6FA8 45%,#2E2A83 100%);padding:64px 48px 46px;color:#fff}
+.hero .kicker{font-size:13px;font-weight:600;letter-spacing:.03em;color:rgba(255,255,255,.78);margin-bottom:10px}
+.hero h1{color:#fff;font-size:32px;font-weight:700;max-width:820px}
+.hero p{color:rgba(255,255,255,.86);max-width:620px;margin:12px 0 0;font-size:15px;line-height:1.6}
+.hero .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:13px;color:rgba(255,255,255,.8)}
+.hero .meta b{color:#fff;font-weight:600}
+
+.shell{display:grid;grid-template-columns:252px minmax(0,1fr);max-width:1180px;margin:-28px auto 0;gap:0}
+.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:34px 18px 40px 8px}
+.toc-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);padding:0 12px 10px}
+.toc a{display:flex;align-items:baseline;gap:10px;padding:8px 12px;border-radius:8px;color:var(--txt);text-decoration:none;font-size:13px;line-height:1.4;margin-bottom:1px}
+.toc a:hover{background:var(--line2)}
+.toc a .idx{font-size:11px;color:var(--faint);min-width:14px;flex:none;font-variant-numeric:tabular-nums}
+.toc a .lbl{flex:1;min-width:0}
+.toc a .dot{width:6px;height:6px;border-radius:50%;background:var(--warn-tx);flex:none;align-self:center}
+
+.main{padding:34px 40px 90px;min-width:0}
+section{margin-bottom:52px;scroll-margin-top:18px}
+section h2{font-size:22px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+section h2 .num{color:var(--faint);font-weight:500;margin-right:9px}
+h3{font-size:16.5px;margin:26px 0 10px}
+h3 .num{color:var(--faint);font-weight:500;margin-right:6px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:5px}
+.lead{font-size:16px;color:var(--txt)}
+
+.callout{border-radius:var(--r);padding:14px 16px;margin:16px 0;border:1px solid;font-size:14.5px;line-height:1.6}
+.callout.info{background:var(--info-bg);border-color:var(--info-bd);color:#1E3A6E}
+.callout.ok{background:var(--ok-bg);border-color:var(--ok-bd);color:#0F5A2A}
+.callout .ttl{font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.callout.warn{background:var(--warn-bg);border-color:var(--warn-bd);color:#5C3D06}
+.callout.warn .ttl{color:var(--warn-tx)}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 9px;border-radius:20px;line-height:1.7}
+.tag.gap{background:var(--warn-bg);color:var(--warn-tx);border:1px solid var(--warn-bd)}
+.tag.src{background:var(--ok-bg);color:var(--ok-tx);border:1px solid var(--ok-bd)}
+.tag.ex{background:var(--bg2,#f1f1f4);color:#555;border:1px solid #ddd}
+.tag.ph{background:none;border:0;color:#6B62B8;margin-left:7px;padding:0;font-size:9.5px;font-weight:700;letter-spacing:.08em;line-height:1;white-space:nowrap;vertical-align:2px}
+
+table{width:100%;border-collapse:collapse;margin:14px 0 18px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line2);vertical-align:top}
+th{background:#FAFBFD;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);font-weight:700}
+.fixed{table-layout:fixed}
+.fixed th{white-space:normal;line-height:1.4}
+.event-table{table-layout:fixed}
+.event-table td{vertical-align:middle}
+.event-table td code{font-size:11.5px;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td code{font-size:12.5px;background:var(--code-bg);padding:1px 6px;border-radius:5px}
+.center{text-align:center}
+.mini{font-size:12.5px;color:var(--mute)}
+.wrap{overflow-x:auto}
+.sec-table{min-width:720px;font-size:13.5px}
+.sec-table td{padding:12px 12px}
+.cl{margin:0;padding-left:16px}
+.cl li{margin-bottom:3px}
+.wdg{border:1px solid var(--line);border-radius:var(--r);background:var(--paper);margin:14px 0;overflow:hidden}
+.wdg-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;padding:12px 14px;background:#FAFBFD;border-bottom:1px solid var(--line2)}
+.wdg-h b{font-family:Sora,Inter,sans-serif;color:var(--ink);font-size:14.5px}
+.wid{font-size:11px;font-weight:700;color:#fff;background:var(--indigo);border-radius:6px;padding:1px 7px}
+.whh{font-size:10.5px;font-weight:600;color:var(--mute);border:1px solid var(--line);border-radius:20px;padding:0 7px}
+.wj{flex-basis:100%;font-size:13px;color:var(--mute)}
+.wdg table{border:0;border-radius:0;margin:0}
+.wt{min-width:600px;font-size:13.5px}
+.rq{display:inline-block;font-size:11px;font-weight:700;padding:1px 9px;border-radius:20px;white-space:nowrap}
+.rq.r{background:#FDE7E7;color:#B42318}.rq.o{background:var(--line2);color:var(--mute)}.rq.a{background:var(--info-bg);color:var(--info-tx)}
+.cta{display:inline-block;background:var(--ink);color:#fff;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;margin:0 4px 5px 0;line-height:1.4;max-width:100%}
+
+.flows{display:flex;gap:28px;flex-wrap:wrap}
+.flow{display:flex;flex-direction:column;gap:10px;flex:1;min-width:260px;max-width:400px;margin:12px 0 20px}
+.flow-h{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:2px}
+.flow .step{border-radius:9px;padding:12px 16px;color:#fff;position:relative}
+.flow .step b{display:block;font-size:14px;font-weight:600}
+.flow .step span{font-size:12.5px;opacity:.85}
+.flow .step:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-11px;width:1.5px;height:10px;background:var(--faint)}
+.s1{background:#4B5261}.s2{background:#4A3FA0}.s3{background:#4A3FA0}.s4{background:#B0522A}.s5{background:#0E7A63}
+
+.jflow{margin:14px 0 10px}
+.jrow,.jvoid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}
+.jvoid{margin-top:30px}
+.jn,.jv{position:relative;border-radius:9px;padding:10px 11px 12px;font-size:12.5px;line-height:1.45}
+.jn{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--faint)}
+.jn.c1{border-top-color:#4B5261}.jn.c2{border-top-color:#4A3FA0}.jn.c3{border-top-color:#B0522A}.jn.c4{border-top-color:#0E7A63}
+.jn:not(:last-child)::after{content:"";position:absolute;right:-20px;top:50%;width:14px;height:14px;transform:translateY(-50%);background:no-repeat center/14px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M1 7h11M8 3l4 4-4 4' fill='none' stroke='%239AA1B1' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.jv{background:var(--warn-bg);border:1.5px dashed var(--warn-bd)}
+.jv::before{content:"";position:absolute;left:50%;top:-31px;height:30px;border-left:1.5px dashed var(--warn-tx)}
+.jk{font-size:10.5px;font-weight:700;color:var(--faint);letter-spacing:.04em}
+.jvf{font-size:10.5px;font-weight:700;color:var(--warn-tx);text-transform:uppercase;letter-spacing:.04em}
+.jt{font-family:Sora,Inter,sans-serif;font-weight:600;color:var(--ink);font-size:13px;margin:2px 0 4px}
+.jd{color:var(--mute);margin-bottom:8px}
+.pill{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 9px;border-radius:20px;white-space:nowrap}
+.p-pend{background:var(--line2);color:var(--mute)}
+.p-sched{background:var(--info-bg);color:var(--info-tx)}
+.p-sent{background:var(--ok-bg);color:var(--ok-tx)}
+.p-void{background:#FBE8C8;color:var(--warn-tx)}
+.p-max{background:var(--line2);color:var(--faint)}
+@media(max-width:880px){
+  .jrow,.jvoid{grid-template-columns:1fr;gap:20px}
+  .jvoid{margin-top:20px}
+  .jv{grid-column:auto!important}
+  .jv::before{display:none}
+  .jn:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-18px;transform:translateX(-50%) rotate(90deg)}
+}
+
+.oq-list{border:1px solid var(--warn-bd);background:var(--warn-bg);border-radius:var(--r);padding:6px 18px 6px 36px}
+.oq-list li{margin:10px 0}
+.oq-list b{color:var(--warn-tx)}
+
+/* live simulator */
+.calc{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:20px 22px 24px;margin:18px 0}
+.calc-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.calc-head h4{font-size:15px;margin:0 0 3px}
+.calc-head p{margin:0;font-size:13px;color:var(--mute)}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 13px;font-size:12.5px;font-weight:500;cursor:pointer;color:var(--txt);font-family:inherit}
+.presets button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.presets button:hover:not(.on){background:var(--line2)}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:18px}
+.ctl label{display:block;font-size:12px;font-weight:600;color:var(--mute);margin-bottom:6px}
+.ctl .field{display:flex;align-items:center;height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px}
+.ctl input[type=range]{width:100%}
+.ctl select{width:100%;height:38px;border:0;padding:0 28px 0 0;font-size:14px;font-weight:500;font-family:inherit;color:var(--ink);cursor:pointer;appearance:none;-webkit-appearance:none;-moz-appearance:none;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 2px center}
+.ctl .field{transition:border-color .15s,box-shadow .15s}
+.ctl .field:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(42,75,215,.12)}
+.ctl .field:has(select):hover{border-color:var(--faint)}
+.ctl input[type=range]{accent-color:var(--indigo)}
+.ctl select:focus{outline:none}
+.ctl .val{font-weight:700;color:var(--ink);margin-left:10px;min-width:22px;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.cell{border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:12.5px}
+.cell .who{color:var(--mute);font-size:11.5px}
+.cell .amt{font-weight:700;color:var(--ink);font-size:14px;margin-top:2px;white-space:nowrap}
+.cell .tier{display:inline-block;margin-top:4px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:1px 8px;border-radius:20px;white-space:nowrap}
+.t-Starter{background:#EEF0F4;color:#4B5261}
+.t-Silver{background:#E8EEF8;color:#2F4A7A}
+.t-Gold{background:#FFF3D6;color:#8A5A00}
+.t-void{background:var(--warn-bg);color:var(--warn-tx)}
+.t-cap{background:var(--line2);color:var(--faint)}
+.cell.void{background:#FFFBF2}
+.cell.void .amt{color:var(--faint);text-decoration:line-through}
+.t-c0{background:#EEF0F4;color:#4B5261}.t-c1{background:#E8EEF8;color:#2F4A7A}.t-c2{background:#FFF3D6;color:#8A5A00}.t-c3{background:#EAF7EE;color:#15803D}
+.cset{border:1px solid var(--line);border-radius:10px;background:#FAFBFD;padding:14px 16px}
+.cset-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:10px}
+.cset-h b{font-family:Sora,Inter,sans-serif;color:var(--ink);font-size:14.5px}
+.cset-h button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--indigo);cursor:pointer;font-family:inherit}
+.cset-t{width:100%;min-width:460px;border:0;margin:0;background:none;font-size:13px}
+.cset-t th,.cset-t td{padding:5px 6px;border:0;background:none}
+.cset-t th{font-size:11px;text-transform:none;letter-spacing:0;color:var(--mute)}
+.cset-t td:first-child{color:var(--mute);font-size:12px;white-space:nowrap}
+.cset input{width:100%;height:34px;border:1px solid var(--line);border-radius:7px;padding:0 9px;font-size:13.5px;font-family:inherit;color:var(--ink);background:#fff}
+.cset input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(42,75,215,.12)}
+.cset-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.cset-row label{font-size:11.5px;font-weight:600;color:var(--mute);display:flex;flex-direction:column;gap:5px}
+.cset-ro{display:flex;flex-direction:column;justify-content:flex-end;gap:5px;font-size:11.5px;font-weight:600;color:var(--mute)}
+.cset-ro b{height:34px;display:flex;align-items:center;font-size:15px;color:var(--ink)}
+.cset-err{margin-top:10px;padding:8px 12px;border-radius:8px;background:var(--warn-bg);border:1px solid var(--warn-bd);color:var(--warn-tx);font-size:12.5px}
+.calc-result{margin-top:16px;padding:13px 16px;border-radius:9px;background:var(--bg);font-size:14px;font-weight:600;color:var(--ink);border:1px solid var(--line)}
+.calc-note{margin-top:10px;font-size:12px;color:var(--mute)}
+
+.tldr{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:var(--r);padding:16px 20px;margin:4px 0 22px}
+.tldr h4{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo);margin:0 0 10px}
+.tldr dl{display:grid;grid-template-columns:150px 1fr;gap:8px 16px;margin:0;font-size:14.5px}
+.tldr dt{font-weight:600;color:var(--ink)}.tldr dd{margin:0}
+@media(max-width:600px){.tldr dl{grid-template-columns:1fr}.tldr dt{margin-top:6px}}
+details.fields{margin:10px 0 16px}
+details.fields>summary{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 16px;border:1px solid var(--line);background:var(--paper);border-radius:20px;font-size:13px;font-weight:600;color:var(--indigo);cursor:pointer;list-style:none}
+details.fields>summary::-webkit-details-marker{display:none}
+details.fields>summary::after{content:"▾";transition:transform .15s}
+details.fields[open]>summary::after{transform:rotate(180deg)}
+details.fields[open]>summary{margin-bottom:6px}
+.foot-links{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--mute);border-top:1px solid var(--line);padding-top:20px;margin-top:8px}
+
+@media(max-width:880px){.shell{grid-template-columns:1fr}.toc{position:static;max-height:none}.main{padding:26px 20px 70px}.hero{padding:44px 22px 34px}}
+
+/* hero status card */
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:40px;align-items:end;max-width:1300px}
+.hero-status{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:16px 18px;font-size:13px;color:rgba(255,255,255,.88)}
+.hero-status .hs-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.hero-status .hs-row:last-child{border-bottom:0}
+.hero-status b{color:#fff;font-weight:600;text-align:right}
+.hero-status .hs-row>span:first-child{white-space:nowrap}
+.hs-pill{display:inline-block;background:#FDE7B0;color:#7A5200;border-radius:20px;padding:0 9px;font-size:11.5px;font-weight:700}
+@media(max-width:980px){.hero-in{grid-template-columns:1fr}.hero-status{max-width:420px}}
+/* section links */
+a.xref{color:inherit;text-decoration:underline;text-decoration-color:rgba(74,63,160,.45);text-underline-offset:2px;text-decoration-thickness:1px}
+a.xref:hover{color:#4A3FA0;text-decoration-color:#4A3FA0}
+.hero a.xref{text-decoration-color:rgba(255,255,255,.6)}.hero a.xref:hover{color:#fff}
+section h2,section h3{scroll-margin-top:16px}
+.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%{background:#FFF3C4}100%{background:transparent}}
+/* toc active + subsections */
+.toc a.on{background:#ECEAF8;color:#2E2A83;font-weight:600}
+.toc .sub{display:none;margin:2px 0 8px 24px;border-left:1px solid var(--line)}
+.toc .grp.open .sub{display:block}
+.toc .sub a{font-size:12.5px;padding:5px 10px;color:var(--mute)}
+.toc .sub a.on{background:none;color:#2E2A83;font-weight:600}
+/* what changed */
+.whatsnew{border:1px solid #CFE6DA;background:#F2FAF6;border-radius:14px;padding:16px 20px;margin:18px 0 8px}
+.whatsnew h4{margin:0 0 8px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#17694A}
+.whatsnew ul{margin:0;padding-left:18px}
+.whatsnew li{margin:4px 0;font-size:14px}
+.whatsnew .mini{margin-top:8px}
+/* lifecycle diagram */
+.lifecycle{overflow-x:auto;margin:10px 0 14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.lifecycle svg{display:block;min-width:720px;width:100%;height:auto}
+/* print */
+@media print{
+  @page{margin:14mm}
+  body{background:#fff}
+  .toc,.presets,.cset button,.ctl,.calc-head .presets{display:none!important}
+  .shell{display:block}
+  .main{padding:0;max-width:none}
+  .hero{background:none!important;color:#111;padding:0 0 14px;border-bottom:2px solid #2E2A83}
+  .hero h1,.hero .meta b,.hero-status b{color:#111}
+  .hero p,.hero .kicker,.hero .meta,.hero-status{color:#333}
+  .hero-status{background:none;border:1px solid #ccc;max-width:360px;margin-top:12px}
+  .hero{margin-bottom:22px}
+  .hero-status .hs-row{border-color:#ddd}
+  a.xref{text-decoration:none}
+  table,.wdg,.callout,.cell,.lifecycle,svg,tr{break-inside:avoid}
+  h2,h3,h4{break-after:avoid}
+  section{break-before:auto}
+  .wrap{overflow:visible}
+}
+
+/* YDST additions */
+.flow .step .tp{font-style:normal;font-weight:700;background:rgba(255,255,255,.2);border-radius:4px;padding:0 5px;margin-left:2px}
+.hero{background:linear-gradient(115deg,#7a1a0b 0%,#b0522a 45%,#2E2A83 100%)}
+.s1{background:#4B5261}.s2{background:#4A3FA0}.s4{background:#B0522A}.s5{background:#0E7A63}
+.score-calc .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:4px}
+.score-calc .box{border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.score-calc .box span{display:block;font-size:11.5px;color:var(--mute)}
+.score-calc .box b{font-size:16px;color:var(--ink)}
+.lever{display:flex;height:12px;border-radius:6px;overflow:hidden;gap:2px;margin:14px 0 4px;background:#fff}
+.lever i{display:block;height:100%}
+.lever-t{position:relative;height:16px;font-size:11px;color:var(--mute)}
+.lever-t span{position:absolute;transform:translateX(-50%)}
+.lever-mark{position:relative;height:0}
+.lever-mark b{position:absolute;top:-24px;transform:translateX(-50%);width:3px;height:20px;background:var(--ink);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div class="hero"><div class="hero-in"><div>
+  <div class="kicker">PRODUCT SPEC · UPGRAD · YOURDEGREE</div>
+  <h1>YDST Scholarship Test</h1>
+  <p>A learner registers on the scholarship page, pays a one-time ₹100 fee and takes a 60-minute test on Gradr. Their score unlocks a discount on first-semester tuition straight away. Every step is sent to OneCRM so upGrad counsellors can follow up. The full journey is in 3.1, and every CRM touch point is in 8.1.</p>
+  <div class="meta">
+    <span><b>Owner</b>: Abhinav Thakur (PM)</span>
+    <span><b>Design</b>: TBD</span>
+    <span><b>Product</b>: TBD</span>
+    <span><b>Engineering</b>: TBD</span>
+  </div>
+  </div>
+  <div class="hero-status">
+    <div class="hs-row"><span>Status</span><span class="hs-pill">Draft</span></div>
+    <div class="hs-row"><span>Last updated</span><b>15 Nov 2026</b></div>
+    <div class="hs-row"><span>Sign-off</span><b>Pending: Product, Engineering, Design</b></div>
+    <div class="hs-row"><span>Test partner</span><b>Gradr</b></div>
+    <div class="hs-row"><span>CRM</span><b>OneCRM (upGrad)</b></div>
+  </div>
+</div></div>
+
+<div class="shell">
+  <aside class="toc"><div id="toc-card"></div></aside>
+  <main class="main" id="main">
+
+<section id="overview">
+  <h2><span class="num">0.</span>Overview &amp; stakeholders</h2>
+  <div class="tldr">
+    <h4>At a glance</h4>
+    <dl>
+      <dt>What</dt><dd>An online scholarship test for upGrad's online degree programmes. Learners register, pay ₹100 once, take the test on Gradr and get a tuition discount based on their score.</dd>
+      <dt>Fee</dt><dd>₹100, one-time and valid for life. It covers one test attempt every calendar month, with no fee for retakes (3.2).</dd>
+      <dt>Discount</dt><dd>One target score per discount: <b>51+ → 50% off</b>, <b>41+ → 30% off</b>, <b>31+ → 15% off</b> first-semester tuition. Below 31, no discount; the learner can retake next month (3.3).</dd>
+      <dt>Journey</dt><dd>Scholarship page → register with OTP → pay ₹100 → payment confirmed → redirect to Gradr → real-time result → discount activated (3.1).</dd>
+      <dt>CRM</dt><dd>The lead is created in OneCRM at registration and updated at every later step, so counsellors always see where the learner is (8).</dd>
+      <dt>Built on</dt><dd>YDST scholarship page (existing prototype), upGrad payment gateway, Gradr test platform, OneCRM, fee system, OTP/SMS.</dd>
+      <dt>Key risks</dt><dd>Gradr's result callback must be reliable and secure, or discounts can't be activated in real time (6, 7). Lead updates to OneCRM must never be lost (8.3).</dd>
+      <dt>Still to settle</dt><dd>Gradr and OneCRM API details, refund policy, and the code validity period (see the open questions in 11.1).</dd>
+    </dl>
+  </div>
+
+  <h3><span class="num">0.1</span>Problem</h3>
+  <p>Learners comparing online degrees often stall at the fee. Generic discounts cut revenue without telling us who is serious. A short test with a small fee filters for intent: people who pay ₹100 and sit a 60-minute test are much more likely to enrol.</p>
+  <p>The test also gives counsellors a real reason to call ("you scored 46 and unlocked 30% off") and a deadline for the learner to act, since each code is valid for 30 days.</p>
+
+  <h3><span class="num">0.2</span>Key terms</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:26%"><col style="width:74%"></colgroup>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td>YDST</td><td>YourDegree Scholarship Test. 60 multiple-choice questions, 60 minutes, 1 mark each, no negative marking.</td></tr>
+    <tr><td>Scholarship page</td><td>The public landing page with the registration form. Prototype: ydst-scholarship-prototype.</td></tr>
+    <tr><td>Registration fee</td><td>₹100, paid once per learner. Never charged again, even for retakes.</td></tr>
+    <tr><td>Learner</td><td>One person, identified by their OTP-verified mobile number. One mobile number = one learner = one lead.</td></tr>
+    <tr><td>Attempt</td><td>One sitting of the test. A learner gets one attempt per calendar month (IST).</td></tr>
+    <tr><td>Paper</td><td>The question set. <b>Master's</b> (advanced) for MBA, MCA, MA, MCom, MSc. <b>Bachelor's</b> (foundation) for BBA, BCA, BA, BCom, BSc. Chosen from the programme at registration.</td></tr>
+    <tr><td>Discount lever</td><td>A target score and the discount it unlocks: 31+ → 15%, 41+ → 30%, 51+ → 50%.</td></tr>
+    <tr><td>Scholarship code</td><td>A unique code issued when an attempt hits a discount lever, e.g. <code>YDPG-K7Q2M</code>. It carries the discount and is valid for 30 days.</td></tr>
+    <tr><td>Gradr</td><td>The external test platform at gradr.in, where the test is taken and scored.</td></tr>
+    <tr><td>OneCRM</td><td>upGrad's CRM at app.onecrm.co.in. Holds the lead that counsellors work on.</td></tr>
+    <tr><td>Touch point</td><td>A step in the journey that creates or updates the learner's lead in OneCRM (8.1).</td></tr>
+    <tr><td>Void attempt</td><td>An attempt cancelled because Gradr's proctoring flagged unfair means. It earns no discount.</td></tr>
+  </table></div>
+
+  <h3><span class="num">0.3</span>Stakeholders</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:50%"><col style="width:50%"></colgroup>
+    <tr><th>Name</th><th>Role</th></tr>
+    <tr><td>Abhinav Thakur</td><td>Product Manager · Owner</td></tr>
+    <tr><td>TBD</td><td>Product Designer · Sign-off pending</td></tr>
+    <tr><td>TBD</td><td>Director of Product · Sign-off pending</td></tr>
+    <tr><td>TBD</td><td>Director of Engineering · Sign-off pending</td></tr>
+    <tr><td>TBD</td><td>Point of contact at Gradr</td></tr>
+    <tr><td>TBD</td><td>Point of contact for OneCRM (upGrad)</td></tr>
+  </table></div>
+
+  <h3><span class="num">0.4</span>Reference links</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+    <tr><th>Content</th><th>Link</th></tr>
+    <tr><td>Scholarship page prototype</td><td><a href="https://abhinavthak.github.io/ydst-scholarship-prototype/" target="_blank" rel="noopener">ydst-scholarship-prototype</a> · <a href="https://abhinavthak.github.io/ydst-scholarship-prototype/#register" target="_blank" rel="noopener">registration form</a></td></tr>
+    <tr><td>Admin dashboard prototype</td><td><a href="https://abhinavthak.github.io/ydst-payments-dashboard/" target="_blank" rel="noopener">ydst-payments-dashboard</a> <span class="tag ex">Sample data</span></td></tr>
+    <tr><td>Test platform</td><td><a href="https://www.gradr.in" target="_blank" rel="noopener">gradr.in</a></td></tr>
+    <tr><td>CRM</td><td><a href="https://app.onecrm.co.in" target="_blank" rel="noopener">app.onecrm.co.in</a></td></tr>
+    <tr><td>Figma</td><td><span class="mini">Not linked yet</span></td></tr>
+    <tr><td>Jira</td><td><span class="mini">Not linked yet</span></td></tr>
+  </table></div>
+</section>
+
+<section id="metrics">
+  <h2><span class="num">1.</span>Key metrics to track</h2>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+    <tr><th>Metric</th><th>How it is measured</th></tr>
+    <tr><td>Registration rate</td><td>% of scholarship page visitors who verify their OTP</td></tr>
+    <tr><td>Payment conversion</td><td>% of registered learners who pay ₹100</td></tr>
+    <tr><td>Payment success rate</td><td>% of payment attempts that succeed at the gateway</td></tr>
+    <tr><td>Test start rate</td><td>% of paid learners who start a test within 7 days of paying</td></tr>
+    <tr><td>Qualification rate</td><td>% of valid attempts that score 31 or more, split by 15% / 30% / 50%</td></tr>
+    <tr><td>Code to enrolment</td><td>% of issued scholarship codes used to enrol within 30 days</td></tr>
+    <tr><td>Enrolment uplift</td><td>Enrolment rate of YDST leads compared with other lead sources</td></tr>
+    <tr><td>Result latency</td><td>Time from test submission to discount shown. Target: under 30 seconds for 99% of attempts</td></tr>
+    <tr><td>CRM sync health</td><td>% of touch points delivered to OneCRM within 2 minutes. Target: 99.5%. Lost updates: always 0</td></tr>
+  </table></div>
+</section>
+
+<section id="user-stories">
+  <h2><span class="num">2.</span>User stories</h2>
+  <h3><span class="num">2.1</span>Learner</h3>
+  <ul>
+    <li>I want to know in seconds what the test is, what it costs and how much I can save.</li>
+    <li>I want to register and pay in under 2 minutes, without a long form.</li>
+    <li>I want to start the test right after paying, without logging in again.</li>
+    <li>I want my result and my discount the moment I finish.</li>
+    <li>If I don't qualify, I want to know when I can try again and that it costs nothing.</li>
+  </ul>
+  <h3><span class="num">2.2</span>Counsellor (upGrad sales)</h3>
+  <ul>
+    <li>I want every YDST learner as a lead in OneCRM as soon as they register.</li>
+    <li>I want the lead to show the payment status, score, discount and code, updated in real time.</li>
+    <li>I want to know who paid but didn't test, and whose code is about to expire, so I can call them.</li>
+  </ul>
+  <h3><span class="num">2.3</span>Business and finance team</h3>
+  <ul>
+    <li>I want every ₹100 payment reconciled against the gateway, with transaction IDs.</li>
+    <li>I want discounts applied only through valid codes, so no one gets a discount they didn't earn.</li>
+    <li>I want a dashboard of fees collected, scores and discounts issued (9).</li>
+  </ul>
+  <h3><span class="num">2.4</span>Marketing team</h3>
+  <ul>
+    <li>I want UTM source, medium and campaign kept on the lead, so I can see which channel brings learners who qualify and enrol.</li>
+    <li>I want to change page copy without breaking the discount rules, which come from configuration (3.3).</li>
+  </ul>
+</section>
+
+<section id="how-it-works">
+  <h2><span class="num">3.</span>How it works</h2>
+  <p>Four ideas hold the product together:</p>
+  <ol>
+    <li><b>Pay once, test monthly.</b> The ₹100 fee is a lifetime registration. It unlocks one attempt every calendar month.</li>
+    <li><b>The score decides the discount.</b> Three target scores, each with one discount. No manual approvals, no exceptions.</li>
+    <li><b>Results are instant.</b> Gradr sends the score back the moment the test is submitted, and the discount is active before the learner leaves the result page.</li>
+    <li><b>The CRM always knows.</b> The lead is created at registration and updated at every step (8.1).</li>
+  </ol>
+
+  <h3><span class="num">3.1</span>End-to-end journey</h3>
+  <p>Each box is one step. The dashed lines show the update sent to OneCRM at that step (T1 to T6, detailed in 8.1).</p>
+  <div class="lifecycle"><svg viewBox="0 0 1040 446" role="img" aria-label="YDST journey across learner, YDST backend, payment gateway, Gradr and OneCRM" style="font-family:Inter,system-ui,sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6B7280"/></marker><marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2A4BD7"/></marker></defs>
+<rect x="4" y="11" width="1032" height="80" rx="10" fill="#F6F7FB" stroke="#E4E7EF"/>
+<rect x="4" y="11" width="6" height="80" rx="3" fill="#4B5261"/>
+<text x="22" y="55.0" font-size="12.5" font-weight="700" fill="#4B5261">Learner</text>
+<rect x="4" y="97" width="1032" height="80" rx="10" fill="#FFFFFF" stroke="#E4E7EF"/>
+<rect x="4" y="97" width="6" height="80" rx="3" fill="#4A3FA0"/>
+<text x="22" y="133.5" font-size="12.5" font-weight="700" fill="#4A3FA0">YDST site</text>
+<text x="22" y="148.5" font-size="12.5" font-weight="700" fill="#4A3FA0">&amp; backend</text>
+<rect x="4" y="183" width="1032" height="80" rx="10" fill="#F6F7FB" stroke="#E4E7EF"/>
+<rect x="4" y="183" width="6" height="80" rx="3" fill="#B0522A"/>
+<text x="22" y="227.0" font-size="12.5" font-weight="700" fill="#B0522A">Payment gateway</text>
+<rect x="4" y="269" width="1032" height="80" rx="10" fill="#FFFFFF" stroke="#E4E7EF"/>
+<rect x="4" y="269" width="6" height="80" rx="3" fill="#0E7A63"/>
+<text x="22" y="305.5" font-size="12.5" font-weight="700" fill="#0E7A63">Gradr</text>
+<text x="22" y="320.5" font-size="12.5" font-weight="700" fill="#0E7A63">(gradr.in)</text>
+<rect x="4" y="355" width="1032" height="80" rx="10" fill="#F6F7FB" stroke="#E4E7EF"/>
+<rect x="4" y="355" width="6" height="80" rx="3" fill="#2A4BD7"/>
+<text x="22" y="391.5" font-size="12.5" font-weight="700" fill="#2A4BD7">OneCRM</text>
+<text x="22" y="406.5" font-size="12.5" font-weight="700" fill="#2A4BD7">(upGrad)</text>
+<rect x="174.0" y="26.0" width="108" height="50" rx="8" fill="#fff" stroke="#4B5261" stroke-width="1.5"/>
+<text x="182.0" y="39.0" font-size="10" font-weight="700" fill="#9AA1B1">1</text>
+<text x="228.0" y="49.0" text-anchor="middle" font-size="12" font-weight="600" fill="#14213D">Lands on</text>
+<text x="228.0" y="64.0" text-anchor="middle" font-size="10.5" fill="#6B7280">scholarship page</text>
+<rect x="298.0" y="112.0" width="108" height="50" rx="8" fill="#fff" stroke="#4A3FA0" stroke-width="1.5"/>
+<text x="306.0" y="125.0" font-size="10" font-weight="700" fill="#9AA1B1">2</text>
+<text x="352.0" y="135.0" text-anchor="middle" font-size="12" font-weight="600" fill="#14213D">Registers</text>
+<text x="352.0" y="150.0" text-anchor="middle" font-size="10.5" fill="#6B7280">OTP verified</text>
+<line x1="352.0" y1="162.0" x2="352.0" y2="368.0" stroke="#2A4BD7" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahb)"/>
+<rect x="298.0" y="370.0" width="108" height="50" rx="8" fill="#EFF5FF" stroke="#C7DBFF"/>
+<text x="306.0" y="383.0" font-size="10" font-weight="700" fill="#2A4BD7">T1</text>
+<text x="352.0" y="395.0" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1D4ED8">Create lead</text>
+<text x="352.0" y="409.0" text-anchor="middle" font-size="10.5" fill="#1E3A6E">Registered</text>
+<rect x="422.0" y="198.0" width="108" height="50" rx="8" fill="#fff" stroke="#B0522A" stroke-width="1.5"/>
+<text x="430.0" y="211.0" font-size="10" font-weight="700" fill="#9AA1B1">3</text>
+<text x="476.0" y="221.0" text-anchor="middle" font-size="12" font-weight="600" fill="#14213D">Pays ₹100</text>
+<text x="476.0" y="236.0" text-anchor="middle" font-size="10.5" fill="#6B7280">checkout</text>
+<line x1="476.0" y1="248.0" x2="476.0" y2="368.0" stroke="#2A4BD7" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahb)"/>
+<rect x="422.0" y="370.0" width="108" height="50" rx="8" fill="#EFF5FF" stroke="#C7DBFF"/>
+<text x="430.0" y="383.0" font-size="10" font-weight="700" fill="#2A4BD7">T2</text>
+<text x="476.0" y="395.0" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1D4ED8">Update</text>
+<text x="476.0" y="409.0" text-anchor="middle" font-size="10.5" fill="#1E3A6E">Payment pending</text>
+<rect x="546.0" y="112.0" width="108" height="50" rx="8" fill="#fff" stroke="#4A3FA0" stroke-width="1.5"/>
+<text x="554.0" y="125.0" font-size="10" font-weight="700" fill="#9AA1B1">4</text>
+<text x="600.0" y="135.0" text-anchor="middle" font-size="12" font-weight="600" fill="#14213D">Payment</text>
+<text x="600.0" y="150.0" text-anchor="middle" font-size="10.5" fill="#6B7280">confirmed</text>
+<line x1="600.0" y1="162.0" x2="600.0" y2="368.0" stroke="#2A4BD7" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahb)"/>
+<rect x="546.0" y="370.0" width="108" height="50" rx="8" fill="#EFF5FF" stroke="#C7DBFF"/>
+<text x="554.0" y="383.0" font-size="10" font-weight="700" fill="#2A4BD7">T3</text>
+<text x="600.0" y="395.0" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1D4ED8">Update</text>
+<text x="600.0" y="409.0" text-anchor="middle" font-size="10.5" fill="#1E3A6E">Paid / Failed</text>
+<rect x="670.0" y="284.0" width="108" height="50" rx="8" fill="#fff" stroke="#0E7A63" stroke-width="1.5"/>
+<text x="678.0" y="297.0" font-size="10" font-weight="700" fill="#9AA1B1">5</text>
+<text x="724.0" y="307.0" text-anchor="middle" font-size="12" font-weight="600" fill="#14213D">Takes test</text>
+<text x="724.0" y="322.0" text-anchor="middle" font-size="10.5" fill="#6B7280">signed redirect</text>
+<line x1="724.0" y1="334.0" x2="724.0" y2="368.0" stroke="#2A4BD7" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahb)"/>
+<rect x="670.0" y="370.0" width="108" height="50" rx="8" fill="#EFF5FF" stroke="#C7DBFF"/>
+<text x="678.0" y="383.0" font-size="10" font-weight="700" fill="#2A4BD7">T4</text>
+<text x="724.0" y="395.0" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1D4ED8">Update</text>
+<text x="724.0" y="409.0" text-anchor="middle" font-size="10.5" fill="#1E3A6E">Test started</text>
+<rect x="794.0" y="284.0" width="108" height="50" rx="8" fill="#fff" stroke="#0E7A63" stroke-width="1.5"/>
+<text x="802.0" y="297.0" font-size="10" font-weight="700" fill="#9AA1B1">6</text>
+<text x="848.0" y="307.0" text-anchor="middle" font-size="12" font-weight="600" fill="#14213D">Result sent</text>
+<text x="848.0" y="322.0" text-anchor="middle" font-size="10.5" fill="#6B7280">in real time</text>
+<line x1="848.0" y1="334.0" x2="848.0" y2="368.0" stroke="#2A4BD7" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahb)"/>
+<rect x="794.0" y="370.0" width="108" height="50" rx="8" fill="#EFF5FF" stroke="#C7DBFF"/>
+<text x="802.0" y="383.0" font-size="10" font-weight="700" fill="#2A4BD7">T5</text>
+<text x="848.0" y="395.0" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1D4ED8">Update</text>
+<text x="848.0" y="409.0" text-anchor="middle" font-size="10.5" fill="#1E3A6E">Score</text>
+<rect x="918.0" y="112.0" width="108" height="50" rx="8" fill="#fff" stroke="#4A3FA0" stroke-width="1.5"/>
+<text x="926.0" y="125.0" font-size="10" font-weight="700" fill="#9AA1B1">7</text>
+<text x="972.0" y="135.0" text-anchor="middle" font-size="12" font-weight="600" fill="#14213D">Discount</text>
+<text x="972.0" y="150.0" text-anchor="middle" font-size="10.5" fill="#6B7280">activated</text>
+<line x1="972.0" y1="162.0" x2="972.0" y2="368.0" stroke="#2A4BD7" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ahb)"/>
+<rect x="918.0" y="370.0" width="108" height="50" rx="8" fill="#EFF5FF" stroke="#C7DBFF"/>
+<text x="926.0" y="383.0" font-size="10" font-weight="700" fill="#2A4BD7">T6</text>
+<text x="972.0" y="395.0" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1D4ED8">Update + assign</text>
+<text x="972.0" y="409.0" text-anchor="middle" font-size="10.5" fill="#1E3A6E">Discount active</text>
+<path d="M282.0,51.0 H290.0 V137.0 H296.0" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M406.0,137.0 H414.0 V223.0 H420.0" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M530.0,223.0 H538.0 V137.0 H544.0" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M654.0,137.0 H662.0 V309.0 H668.0" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M778.0,309.0 H792.0" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M902.0,309.0 H910.0 V137.0 H916.0" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg></div>
+  <div class="flows">
+    <div class="flow">
+      <div class="flow-h">Happy path</div>
+      <div class="step s1"><b>1 · Lands on scholarship page</b><span>From an ad, email, WhatsApp or a counsellor's link. UTM saved.</span></div>
+      <div class="step s2"><b>2 · Registers</b><span>Picks UG/PG and programme, verifies mobile with OTP, enters name and email. <i class="tp">T1</i></span></div>
+      <div class="step s4"><b>3 · Pays ₹100</b><span>Gateway checkout opens. <i class="tp">T2</i></span></div>
+      <div class="step s4"><b>4 · Payment successful</b><span>Confirmed by the gateway webhook, not the browser. <i class="tp">T3</i></span></div>
+      <div class="step s5"><b>5 · Redirected to Gradr</b><span>Signed link, no second login. Test starts. <i class="tp">T4</i></span></div>
+      <div class="step s5"><b>6 · Real-time result</b><span>Gradr sends the score back on submit. <i class="tp">T5</i></span></div>
+      <div class="step s2"><b>7 · Discount activated</b><span>Code issued and shown, SMS and email sent. <i class="tp">T6</i></span></div>
+    </div>
+    <div class="flow">
+      <div class="flow-h">Other paths</div>
+      <div class="step s1"><b>Payment fails or is abandoned</b><span>Learner returns to the form with a retry button. Lead updated. Counsellor follow-up list (9).</span></div>
+      <div class="step s1"><b>Paid but doesn't start the test</b><span>"Start test" link in SMS and email. Learner can start any time this month.</span></div>
+      <div class="step s1"><b>Scores below 31</b><span>No code. Result page shows the next attempt date (1st of next month).</span></div>
+      <div class="step s1"><b>Proctoring flags the attempt</b><span>Attempt is Void, no code. Counts as this month's attempt.</span></div>
+      <div class="step s1"><b>Returning learner, next month</b><span>Logs in with OTP, skips payment, goes straight to Gradr. <i class="tp">T4</i> onward.</span></div>
+    </div>
+  </div>
+
+  <h3><span class="num">3.2</span>Rules</h3>
+  <ul>
+    <li><b>One learner per mobile number.</b> The OTP-verified mobile is the unique ID. Email is collected but isn't unique.</li>
+    <li><b>Fee is once for life.</b> A learner who has paid is never asked to pay again. A refunded learner must pay again to test.</li>
+    <li><b>One attempt per calendar month (IST).</b> Only a submitted or void attempt uses up the month. A test that's started but not submitted, or that breaks because of a Gradr error, doesn't.</li>
+    <li><b>Paper follows the programme.</b> Master's programmes get the advanced paper, bachelor's the foundation paper. The learner can change programme before each attempt; the paper changes with it.</li>
+    <li><b>Best active code wins.</b> If a learner has more than one active code, the fee system applies the highest discount. A new attempt never cancels an earlier, better code.</li>
+    <li><b>Enrolling ends testing.</b> Once a code is used to enrol, the learner can't take more attempts.</li>
+  </ul>
+
+  <h3><span class="num">3.3</span>Discount levers</h3>
+  <p>Each discount has one target score. The values live in configuration (11), so they can change without a code release. Changes apply to attempts submitted after the change.</p>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:24%"><col style="width:52%"></colgroup>
+    <tr><th>Target score</th><th>Discount</th><th>Applies to</th></tr>
+    <tr><td><b>51</b> or more</td><td><b>50%</b> off</td><td rowspan="3">First-semester tuition of the programme the learner tested for, at any of the 18 partner universities</td></tr>
+    <tr><td><b>41</b> or more</td><td><b>30%</b> off</td></tr>
+    <tr><td><b>31</b> or more</td><td><b>15%</b> off</td></tr>
+    <tr><td>Below 31</td><td>None</td><td>Learner can retake next month at no cost</td></tr>
+  </table></div>
+  <div id="calc-root"></div>
+
+  <h3><span class="num">3.4</span>Learner stages</h3>
+  <p>One stage per learner, always the furthest step reached. The same stage name is sent to OneCRM as the YDST stage (8.2).</p>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:46%"><col style="width:30%"></colgroup>
+    <tr><th>Stage</th><th>Meaning</th><th>Set by</th></tr>
+    <tr><td><span class="pill p-pend">Registered</span></td><td>OTP verified, form submitted, nothing paid</td><td>Registration (T1)</td></tr>
+    <tr><td><span class="pill p-sched">Payment pending</span></td><td>Checkout opened, no final result from the gateway</td><td>Payment start (T2)</td></tr>
+    <tr><td><span class="pill p-void">Payment failed</span></td><td>Gateway declined, or no result after 30 minutes</td><td>Gateway webhook (T3)</td></tr>
+    <tr><td><span class="pill p-sent">Paid</span></td><td>₹100 confirmed. Can take the test</td><td>Gateway webhook (T3)</td></tr>
+    <tr><td><span class="pill p-sched">Test started</span></td><td>Redirected to Gradr, attempt open</td><td>Redirect (T4)</td></tr>
+    <tr><td><span class="pill p-pend">Not qualified</span></td><td>Best valid score below 31</td><td>Result (T5)</td></tr>
+    <tr><td><span class="pill p-sent">Discount active</span></td><td>Holds an active scholarship code</td><td>Activation (T6)</td></tr>
+    <tr><td><span class="pill p-max">Code expired</span></td><td>All codes expired without enrolling</td><td>Daily expiry job (T7)</td></tr>
+    <tr><td><span class="pill p-sent">Enrolled</span></td><td>Enrolled using a scholarship code</td><td>Fee system (T7)</td></tr>
+    <tr><td><span class="pill p-void">Refunded</span></td><td>Fee refunded. Can't test until they pay again</td><td>Finance (T7)</td></tr>
+  </table></div>
+</section>
+
+<section id="landing">
+  <h2><span class="num">4.</span>Scholarship page and registration</h2>
+  <div class="callout info">
+    <div class="ttl">↔ How it connects</div>
+    Creates the learner and the lead (T1, 8.1), then hands over to payment (5). Prototype: <a href="https://abhinavthak.github.io/ydst-scholarship-prototype/#register" target="_blank" rel="noopener">registration form</a>.
+  </div>
+  <h3><span class="num">4.1</span>Entry points</h3>
+  <ul>
+    <li>Paid ads, email, WhatsApp and SMS campaigns, each with UTM parameters.</li>
+    <li>Links shared by counsellors, tagged with <code>utm_medium=counsellor</code> and the counsellor's ID.</li>
+    <li>Every "Register" button on the page opens the same registration form in a pop-up.</li>
+  </ul>
+  <h3><span class="num">4.2</span>Page copy that must match the rules</h3>
+  <p>These figures appear on the page and must come from configuration, not be typed into the copy: fee (₹100, one-time), target scores and discounts (3.3), test length (60 questions, 60 minutes), attempts (one a month), code validity (30 days), number of partner universities.</p>
+  <h3><span class="num">4.3</span>Registration form fields</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:14%"><col style="width:62%"></colgroup>
+    <tr><th>Field</th><th>Required</th><th>Rules</th></tr>
+    <tr><td>Level</td><td><span class="rq r">Required</span></td><td>Postgraduate or Undergraduate toggle. Default: Postgraduate.</td></tr>
+    <tr><td>Mobile (+91)</td><td><span class="rq r">Required</span></td><td>10 digits starting 6 to 9. Verified with a 6-digit OTP before the other fields unlock. Resend after 30 seconds.</td></tr>
+    <tr><td>Programme</td><td><span class="rq r">Required</span></td><td>List filtered by level. PG: MBA, MCA, MA, MCom, MSc. UG: BBA, BCA, BA, BCom, BSc. Decides the paper.</td></tr>
+    <tr><td>Full name</td><td><span class="rq r">Required</span></td><td>2 to 60 letters and spaces.</td></tr>
+    <tr><td>Email</td><td><span class="rq r">Required</span></td><td>Valid format. Used for the receipt, test link and scholarship code.</td></tr>
+    <tr><td>Consent</td><td><span class="rq a">Shown</span></td><td>"By submitting this form, you agree to our Terms of Service and Privacy Policy and to be contacted by us via Call/Email/WhatsApp/SMS." Consent time is stored and sent to OneCRM.</td></tr>
+  </table></div>
+  <h3><span class="num">4.4</span>Requirements</h3>
+  <ul>
+    <li>The submit button reads <b>Pay ₹100 &amp; Start Test</b> and stays disabled until every field is valid and the OTP is verified.</li>
+    <li>A fee box above the button shows: Registration fee ₹100 · One-time payment · Valid for life · 1 test a month · Free retakes.</li>
+    <li>If the mobile number has already paid, skip payment: show "Welcome back, &lt;name&gt;" and a <b>Start test</b> button (or the next attempt date if this month is used).</li>
+    <li>If the mobile number is registered but unpaid, prefill the form and go to payment.</li>
+    <li>UTM parameters and the landing URL are kept from the first page view through to the lead (T1).</li>
+  </ul>
+</section>
+
+<section id="payment">
+  <h2><span class="num">5.</span>Payment (₹100)</h2>
+  <div class="callout info">
+    <div class="ttl">↔ How it connects</div>
+    Starts after registration (4). On success, the learner goes to Gradr (6). Every outcome updates the lead (T2, T3).
+  </div>
+  <h3><span class="num">5.1</span>Checkout</h3>
+  <ol>
+    <li>The backend creates an order: amount ₹100 (incl. GST), learner ID, order ID. The order ID is sent to OneCRM with T2.</li>
+    <li>The gateway checkout opens on top of the page: UPI, cards, net banking and wallets.</li>
+    <li>The learner pays. The page shows "Confirming your payment…" until the backend confirms.</li>
+    <li>The backend marks the payment paid <b>only</b> when the gateway's signed webhook (or a server-side status check) says so. The browser redirect alone is never trusted.</li>
+  </ol>
+  <h3><span class="num">5.2</span>Outcomes</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:42%"><col style="width:36%"></colgroup>
+    <tr><th>Gateway result</th><th>Learner sees</th><th>System does</th></tr>
+    <tr><td>Success</td><td>"Payment successful. Starting your test…" then redirect to Gradr (6.1)</td><td>Stage → Paid. Receipt by email and SMS. T3 with transaction ID.</td></tr>
+    <tr><td>Failed</td><td>"Payment didn't go through. No money was taken." <b>Try again</b></td><td>Stage → Payment failed. T3 with failure reason.</td></tr>
+    <tr><td>Pending</td><td>"Your bank is still confirming. We'll message you as soon as it's done."</td><td>Checks status every 2 minutes for 30 minutes, then marks it failed. A late success still marks it paid.</td></tr>
+    <tr><td>Abandoned</td><td>Form stays filled, with a <b>Pay ₹100</b> button</td><td>No result after 30 minutes → Payment failed (abandoned). T3.</td></tr>
+    <tr><td>Paid twice</td><td>Nothing extra</td><td>The second payment is refunded automatically within 7 days.</td></tr>
+  </table></div>
+  <h3><span class="num">5.3</span>Refunds</h3>
+  <ul>
+    <li>Refunds are manual, by finance, only before the first attempt is submitted. <span class="tag gap">To confirm</span></li>
+    <li>A refund sets the stage to Refunded and sends T7. Codes already issued stay valid. <span class="tag gap">To confirm</span></li>
+  </ul>
+  <div class="callout ok">
+    <div class="ttl">⚙ Backend requirement</div>
+    Payment handling must be idempotent: the same webhook delivered twice must not create two payments or two CRM updates. Store the gateway transaction ID against the order.
+  </div>
+</section>
+
+<section id="gradr">
+  <h2><span class="num">6.</span>Test on Gradr</h2>
+  <div class="callout info">
+    <div class="ttl">↔ How it connects</div>
+    Starts after payment (5) or from a returning learner's <b>Start test</b> button. Ends with the result callback (7).
+  </div>
+  <h3><span class="num">6.1</span>Handoff to gradr.in</h3>
+  <ul>
+    <li>The backend asks Gradr to create an attempt for the learner and gets back a test URL. <span class="tag gap">Gradr API to confirm</span></li>
+    <li>The learner is redirected to that URL with a short-lived signed token (valid 10 minutes, single use). No second login.</li>
+    <li>Sent to Gradr: attempt ID, learner ID, name, email, mobile, paper (Master's or Bachelor's), return URL.</li>
+    <li>If Gradr doesn't respond within 10 seconds, show "We couldn't start your test. Try again in a minute." The month's attempt isn't used.</li>
+  </ul>
+  <h3><span class="num">6.2</span>Test format</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:46%"><col style="width:18%"><col style="width:36%"></colgroup>
+    <tr><th>Section</th><th>Questions</th><th>Notes</th></tr>
+    <tr><td>Logical Reasoning</td><td>20</td><td rowspan="4">1 mark each, no negative marking. 60 minutes in total. Same pattern for both papers; difficulty depends on the paper.</td></tr>
+    <tr><td>Quantitative Aptitude</td><td>15</td></tr>
+    <tr><td>Verbal Ability &amp; Reading Comprehension</td><td>15</td></tr>
+    <tr><td>Abstract Reasoning</td><td>10</td></tr>
+  </table></div>
+  <ul>
+    <li><b>Proctoring:</b> webcam on and full screen, run by Gradr. If Gradr flags the attempt, it comes back as Void (7.2).</li>
+    <li><b>Disconnects:</b> Gradr resumes the same attempt if the learner returns within the 60 minutes. <span class="tag gap">Gradr to confirm</span></li>
+    <li><b>Timeout:</b> at 60 minutes Gradr submits the attempt automatically.</li>
+  </ul>
+  <h3><span class="num">6.3</span>Coming back from Gradr</h3>
+  <p>After submitting, Gradr sends the learner to the return URL: the YDST result page (7.2). The result page never trusts scores in the URL. It shows only what the backend received from Gradr's callback (7.1).</p>
+</section>
+
+<section id="result">
+  <h2><span class="num">7.</span>Result and discount activation</h2>
+  <h3><span class="num">7.1</span>Real-time result</h3>
+  <ol>
+    <li>On submit, Gradr calls the YDST result webhook with: attempt ID, total score out of 60, submitted time, proctoring status (clear or flagged). <span class="tag gap">Payload to confirm</span></li>
+    <li>The backend checks the signature, stores the result and works out the discount (3.3). This must take under 5 seconds.</li>
+    <li>If the score hits a lever and the attempt isn't void, a scholarship code is issued (7.3) and T5 and T6 are sent to OneCRM.</li>
+    <li>If no callback arrives within 2 minutes of the learner returning, the backend asks Gradr for the result directly.</li>
+  </ol>
+  <h3><span class="num">7.2</span>Result page</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
+    <tr><th>State</th><th>Learner sees</th></tr>
+    <tr><td>Waiting</td><td>"Scoring your test…" with a spinner. Refreshes every 3 seconds for up to 2 minutes, then "Your result will reach you by SMS and email within 15 minutes."</td></tr>
+    <tr><td>50% / 30% / 15%</td><td>Score out of 60, "You've unlocked &lt;X&gt;% off your first-semester tuition", the code with a copy button, expiry date, and "A counsellor will call you within 24 hours." Button: <b>Explore universities</b>.</td></tr>
+    <tr><td>Below 31</td><td>Score out of 60, "You need 31 to unlock 15% off.", next attempt date (1st of next month), and "Retakes are free."</td></tr>
+    <tr><td>Void</td><td>"Your attempt was flagged by proctoring, so no scholarship can be given. You can try again from &lt;date&gt;."</td></tr>
+  </table></div>
+  <h3><span class="num">7.3</span>Scholarship code</h3>
+  <ul>
+    <li>Format: <code>YD</code> + paper (<code>PG</code> or <code>UG</code>) + 5 random characters, e.g. <code>YDPG-K7Q2M</code>. No ambiguous characters (0/O, 1/I).</li>
+    <li>Valid for 30 days from the attempt, for the programme tested, at any partner university. Not transferable.</li>
+    <li>Pushed to the fee system on issue, so the discount is applied when the learner pays the first-semester fee. Can't be combined with other offers.</li>
+    <li>Sent by SMS and email straight away.</li>
+  </ul>
+  <h3><span class="num">7.4</span>Messages</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:28%"><col style="width:16%"><col style="width:56%"></colgroup>
+    <tr><th>Trigger</th><th>Channel</th><th>Content</th></tr>
+    <tr><td>Payment successful</td><td>SMS, email</td><td>Receipt, transaction ID and a <b>Start test</b> link</td></tr>
+    <tr><td>Paid, no test after 2 days</td><td>SMS, WhatsApp</td><td>Reminder with the <b>Start test</b> link</td></tr>
+    <tr><td>Discount activated</td><td>SMS, email</td><td>Score, discount, code and expiry date</td></tr>
+    <tr><td>Below 31</td><td>Email</td><td>Score and next attempt date</td></tr>
+    <tr><td>Code expires in 7 days</td><td>SMS, email</td><td>Reminder to enrol before the date</td></tr>
+    <tr><td>New month starts (not qualified)</td><td>SMS</td><td>"Your free retake is open"</td></tr>
+  </table></div>
+</section>
+
+<section id="crm">
+  <h2><span class="num">8.</span>Lead sync to OneCRM</h2>
+  <div class="callout info">
+    <div class="ttl">↔ How it connects</div>
+    Every touch point in the journey (3.1) creates or updates the same lead in OneCRM at app.onecrm.co.in, for upGrad. Counsellors work from that lead.
+  </div>
+  <h3><span class="num">8.1</span>Touch points</h3>
+  <div class="wrap"><table class="fixed sec-table"><colgroup><col style="width:7%"><col style="width:21%"><col style="width:16%"><col style="width:18%"><col style="width:38%"></colgroup>
+    <tr><th>#</th><th>Touch point</th><th>CRM action</th><th>YDST stage</th><th>Fields sent (besides mobile)</th></tr>
+    <tr><td><b>T1</b></td><td>OTP verified and form submitted</td><td>Create lead, or update if the mobile exists</td><td>Registered</td><td>Name, email, level, programme, UTM source/medium/campaign, landing URL, consent time</td></tr>
+    <tr><td><b>T2</b></td><td>Payment started</td><td>Update</td><td>Payment pending</td><td>Order ID, amount</td></tr>
+    <tr><td><b>T3</b></td><td>Payment result</td><td>Update</td><td>Paid or Payment failed</td><td>Payment status, transaction ID, paid time, failure reason</td></tr>
+    <tr><td><b>T4</b></td><td>Redirected to Gradr</td><td>Update</td><td>Test started</td><td>Attempt ID, attempt month, paper, start time</td></tr>
+    <tr><td><b>T5</b></td><td>Result received</td><td>Update</td><td>Not qualified, or (with T6) Discount active</td><td>Score /60, discount earned (0/15/30/50), proctoring status, attempt count, best score</td></tr>
+    <tr><td><b>T6</b></td><td>Discount activated</td><td>Update + assign to counsellor</td><td>Discount active</td><td>Scholarship code, discount %, code expiry date</td></tr>
+    <tr><td><b>T7</b></td><td>Later changes</td><td>Update</td><td>Enrolled, Code expired or Refunded</td><td>Code status, enrolment date, university, refund date</td></tr>
+  </table></div>
+  <h3><span class="num">8.2</span>Lead fields</h3>
+  <p>New custom fields on the OneCRM lead, all prefixed <code>ydst_</code>. <span class="tag gap">Field names to confirm with OneCRM</span></p>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:20%"><col style="width:48%"></colgroup>
+    <tr><th>Field</th><th>Type</th><th>Values</th></tr>
+    <tr><td><code>lead_source</code></td><td>Existing</td><td>YDST Scholarship Test</td></tr>
+    <tr><td><code>ydst_stage</code></td><td>Picklist</td><td>The stages in 3.4</td></tr>
+    <tr><td><code>ydst_payment_status</code></td><td>Picklist</td><td>Not started, Pending, Paid, Failed, Refunded</td></tr>
+    <tr><td><code>ydst_txn_id</code></td><td>Text</td><td>Gateway transaction ID</td></tr>
+    <tr><td><code>ydst_attempts</code></td><td>Number</td><td>Submitted and void attempts so far</td></tr>
+    <tr><td><code>ydst_last_score</code> / <code>ydst_best_score</code></td><td>Number</td><td>0 to 60</td></tr>
+    <tr><td><code>ydst_discount_pct</code></td><td>Number</td><td>0, 15, 30, 50 (best active)</td></tr>
+    <tr><td><code>ydst_code</code> / <code>ydst_code_expiry</code></td><td>Text / Date</td><td>Best active code and its expiry</td></tr>
+    <tr><td><code>ydst_next_attempt</code></td><td>Date</td><td>First day the learner can test again</td></tr>
+  </table></div>
+  <h3><span class="num">8.3</span>Delivery rules</h3>
+  <ul>
+    <li><b>Matching:</b> the lead is found by mobile number. Never create a second lead for the same mobile.</li>
+    <li><b>Existing lead:</b> if the mobile already exists in OneCRM from another source, update it and add YDST fields. Don't change its owner, except at T6 if it has none.</li>
+    <li><b>Order:</b> each update carries the event time. OneCRM ignores an update older than the one it already has, so a late T2 can't overwrite T3.</li>
+    <li><b>Retries:</b> updates go through a queue. Failures retry with back-off for 24 hours, then alert the on-call engineer. The learner's journey never waits for OneCRM.</li>
+    <li><b>Audit:</b> every request and response is logged with the touch point and attempt ID.</li>
+  </ul>
+  <div class="callout ok">
+    <div class="ttl">⚙ Backend requirement</div>
+    The learner's journey must never wait for or fail because of OneCRM. CRM delivery is asynchronous, idempotent per touch point and attempt, and retried until it succeeds.
+  </div>
+</section>
+
+<section id="admin">
+  <h2><span class="num">9.</span>Admin dashboard</h2>
+  <p>An internal dashboard for the business, finance and sales teams. Prototype with sample data: <a href="https://abhinavthak.github.io/ydst-payments-dashboard/" target="_blank" rel="noopener">ydst-payments-dashboard</a>.</p>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
+    <tr><th>Tab</th><th>What it shows</th></tr>
+    <tr><td>Overview</td><td>Funnel (started → paid → tested → scored 31+ → enrolled), best-score mix, score distribution with the three target scores, and follow-up lists: payment not completed, paid but no test, code expiring soon, best score 27 to 30.</td></tr>
+    <tr><td>Registration fees</td><td>One row per learner with fee status and every payment attempt (opened time, amount, result, gateway response, settled time, transaction ID). Filters, status tabs, CSV export, refresh payment status.</td></tr>
+    <tr><td>Test results</td><td>One row per attempt with score, discount, code and code status. Filters by paper, month, code status; tabs by discount; CSV export.</td></tr>
+    <tr><td>Learner profile</td><td>Opens from any tab. Journey, fee history and every attempt for one learner.</td></tr>
+  </table></div>
+  <ul>
+    <li>Access by login, with roles. Only finance can see transaction IDs and start refunds. <span class="tag gap">Roles to confirm</span></li>
+  </ul>
+</section>
+
+<section id="edge-cases">
+  <h2><span class="num">10.</span>Edge cases and acceptance criteria</h2>
+  <h3><span class="num">10.1</span>Edge cases</h3>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:44%"><col style="width:56%"></colgroup>
+    <tr><th>Situation</th><th>What happens</th></tr>
+    <tr><td>Learner closes the tab after paying, before the redirect</td><td>Payment is still confirmed by webhook. SMS and email carry the <b>Start test</b> link.</td></tr>
+    <tr><td>Learner opens the Gradr link on a second device</td><td>The token is single use. The second device sees "This link was already used" and a button to get a new one after OTP.</td></tr>
+    <tr><td>Gradr is down</td><td>The <b>Start test</b> button shows "Tests are paused for a few minutes." The month's attempt isn't used.</td></tr>
+    <tr><td>Test starts on 31 Oct, submitted on 1 Nov</td><td>The attempt counts for the month it <b>started</b> (October). The learner can test again in November.</td></tr>
+    <tr><td>Learner changes programme from MBA to BBA</td><td>Allowed between attempts. The next attempt uses the bachelor's paper. Existing codes stay tied to the programme they were earned for.</td></tr>
+    <tr><td>Learner scores 52, then 44 next month</td><td>Both codes are issued. The 50% code stays the best active code until it expires.</td></tr>
+    <tr><td>OneCRM is unavailable for an hour</td><td>The learner journey continues. Updates queue and deliver in order when OneCRM is back.</td></tr>
+  </table></div>
+  <h3><span class="num">10.2</span>Acceptance criteria</h3>
+  <p class="mini">Each line passes or fails. Given = starting point; When = action; Then = expected result.</p>
+  <h4 style="font-size:14.5px;margin:18px 0 6px">Registration and payment</h4>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
+    <tr><th>Given</th><th>When</th><th>Then</th></tr>
+    <tr><td>A new mobile number</td><td>the learner verifies the OTP and submits</td><td>a learner and a OneCRM lead are created with stage Registered (T1), and checkout opens</td></tr>
+    <tr><td>A learner at checkout</td><td>the gateway webhook confirms success</td><td>stage is Paid, a receipt is sent, T3 reaches OneCRM, and the learner is redirected to Gradr</td></tr>
+    <tr><td>A learner at checkout</td><td>the browser shows success but no webhook arrives</td><td>the backend checks the status with the gateway before marking Paid</td></tr>
+    <tr><td>A learner who has already paid</td><td>registers again with the same mobile</td><td>they are not asked to pay and see Start test or the next attempt date</td></tr>
+  </table></div>
+  <h4 style="font-size:14.5px;margin:18px 0 6px">Test and result</h4>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
+    <tr><th>Given</th><th>When</th><th>Then</th></tr>
+    <tr><td>A paid learner with no attempt this month</td><td>they tap Start test</td><td>they land on Gradr without logging in, and T4 is sent</td></tr>
+    <tr><td>A paid learner who tested this month</td><td>they tap Start test</td><td>no attempt is created; they see the next attempt date</td></tr>
+    <tr><td>A submitted attempt scoring 46</td><td>Gradr's callback arrives</td><td>a 30% code valid for 30 days is shown on the result page within 30 seconds, sent by SMS and email, and T5 and T6 reach OneCRM</td></tr>
+    <tr><td>A submitted attempt scoring 30</td><td>Gradr's callback arrives</td><td>no code is issued, the result page shows the next attempt date, and T5 is sent with discount 0</td></tr>
+    <tr><td>An attempt flagged by proctoring with score 55</td><td>Gradr's callback arrives</td><td>the attempt is Void, no code is issued, and it counts as the month's attempt</td></tr>
+    <tr><td>A callback with an invalid signature</td><td>it reaches the webhook</td><td>it is rejected and logged; nothing changes</td></tr>
+  </table></div>
+  <h4 style="font-size:14.5px;margin:18px 0 6px">CRM sync</h4>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
+    <tr><th>Given</th><th>When</th><th>Then</th></tr>
+    <tr><td>A mobile that already exists in OneCRM</td><td>the learner registers (T1)</td><td>the existing lead is updated with YDST fields; no new lead is created</td></tr>
+    <tr><td>OneCRM returns an error</td><td>any touch point is sent</td><td>it retries until delivered, and the learner sees no error</td></tr>
+    <tr><td>T3 is delivered before a delayed T2</td><td>T2 arrives</td><td>the lead keeps the Paid stage</td></tr>
+  </table></div>
+</section>
+
+<section id="data">
+  <h2><span class="num">11.</span>Data and integrations</h2>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:76%"></colgroup>
+    <tr><th>System</th><th>Role</th></tr>
+    <tr><td>YDST backend</td><td>Owns learners, payments, attempts, results and codes. Sends every touch point to OneCRM. New service.</td></tr>
+    <tr><td>Payment gateway</td><td>upGrad's existing gateway. Creates orders, sends signed webhooks, supports status checks and refunds.</td></tr>
+    <tr><td>Gradr</td><td>Creates attempts, runs and proctors the test, scores it, and sends the result callback. Needs: create-attempt API, signed redirect, result webhook, result lookup API.</td></tr>
+    <tr><td>OneCRM</td><td>Lead create and update API with custom fields (8.2), and counsellor assignment at T6.</td></tr>
+    <tr><td>Fee system</td><td>Receives scholarship codes and applies the discount to first-semester tuition. Reports when a code is used (T7).</td></tr>
+    <tr><td>OTP, SMS, email, WhatsApp</td><td>Existing providers for OTP and the messages in 7.4.</td></tr>
+    <tr><td>Configuration</td><td>Fee amount, target scores and discounts, code validity days, attempts per month. Changeable without a release.</td></tr>
+  </table></div>
+  <h3><span class="num">11.1</span>Open questions</h3>
+  <ol class="oq-list">
+    <li><b>Gradr:</b> exact APIs for creating attempts, the redirect token format, the result webhook payload and signature, and the result lookup.</li>
+    <li><b>OneCRM:</b> lead API, custom field names, and how leads are assigned to counsellors at T6.</li>
+    <li><b>Refunds:</b> are refunds allowed, and up to when?</li>
+    <li><b>Code validity:</b> is 30 days right, and can a counsellor extend it?</li>
+    <li><b>GST:</b> is ₹100 inclusive of GST, and what invoice does the learner get?</li>
+  </ol>
+</section>
+
+<section id="release">
+  <h2><span class="num">12.</span>Release plan</h2>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:14%"><col style="width:86%"></colgroup>
+    <tr><th>Phase</th><th>What ships</th></tr>
+    <tr><td>v1</td><td>Scholarship page, registration with OTP, ₹100 payment, Gradr handoff and result callback, discount codes in the fee system, OneCRM touch points T1 to T7, result page, SMS and email messages.</td></tr>
+    <tr><td>v1.1</td><td>Admin dashboard (9), WhatsApp reminders, counsellor follow-up lists.</td></tr>
+    <tr><td>v2</td><td>Section-wise score report for learners, practice tests, configurable campaigns (e.g. bonus discount weeks).</td></tr>
+  </table></div>
+</section>
+
+<section id="tracking">
+  <h2><span class="num">A.</span>Appendix: event tracking</h2>
+  <p>Events to record. Every event also carries <code>learner_id</code> (once known) and the UTM parameters of the first visit.</p>
+  <div class="wrap">
+  <table class="event-table">
+    <colgroup><col style="width:27%"><col style="width:27%"><col style="width:20%"><col style="width:26%"></colgroup>
+    <tr><th>Event name</th><th>Fires when</th><th>Event parameter</th><th>Value</th></tr>
+    <tr><td colspan="4" class="mini"><b>Scholarship page</b></td></tr>
+    <tr><td><code>ydst_page_viewed</code></td><td>Page loads</td><td><code>entry_point</code></td><td>ads, email, whatsapp, sms, counsellor, direct</td></tr>
+    <tr><td><code>register_clicked</code></td><td>Any Register button tapped</td><td><code>cta_location</code></td><td>hero, steps, prepare, cta, sticky</td></tr>
+    <tr><td><code>otp_sent</code></td><td>OTP sent</td><td><code>level</code></td><td>pg, ug</td></tr>
+    <tr><td><code>otp_verified</code></td><td>OTP matches</td><td><code>attempts</code></td><td>Number of tries</td></tr>
+    <tr><td><code>registration_submitted</code></td><td>Form submitted</td><td><code>programme</code></td><td>MBA, MCA … BSc</td></tr>
+    <tr><td colspan="4" class="mini"><b>Payment</b></td></tr>
+    <tr><td><code>checkout_opened</code></td><td>Gateway checkout opens</td><td><code>order_id</code></td><td>Order ID</td></tr>
+    <tr><td rowspan="2"><code>payment_result</code></td><td rowspan="2">Backend confirms the outcome</td><td><code>status</code></td><td>success, failed, abandoned</td></tr>
+    <tr><td><code>method</code></td><td>upi, card, netbanking, wallet</td></tr>
+    <tr><td colspan="4" class="mini"><b>Test and result</b></td></tr>
+    <tr><td><code>test_redirected</code></td><td>Learner sent to Gradr</td><td><code>attempt_no</code></td><td>1, 2, 3 …</td></tr>
+    <tr><td rowspan="2"><code>result_received</code></td><td rowspan="2">Gradr callback stored</td><td><code>score</code></td><td>0 to 60</td></tr>
+    <tr><td><code>latency_ms</code></td><td>Submit to callback</td></tr>
+    <tr><td><code>discount_activated</code></td><td>Code issued</td><td><code>discount_pct</code></td><td>15, 30, 50</td></tr>
+    <tr><td><code>code_copied</code></td><td>Copy tapped on result page</td><td><code>discount_pct</code></td><td>15, 30, 50</td></tr>
+    <tr><td colspan="4" class="mini"><b>Server-side CRM events</b></td></tr>
+    <tr><td rowspan="2"><code>crm_sync</code></td><td rowspan="2">Touch point delivered to OneCRM</td><td><code>touch_point</code></td><td>T1 to T7</td></tr>
+    <tr><td><code>retries</code></td><td>Number of retries</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="changelog">
+  <h2><span class="num">B.</span>Appendix: change log</h2>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
+    <tr><th>Date</th><th>Change</th></tr>
+    <tr><td>15 Nov 2026</td><td>First draft: journey from scholarship page to discount activation, ₹100 lifetime fee, Gradr handoff, discount levers (31/41/51), OneCRM touch points T1 to T7, admin dashboard.</td></tr>
+  </table></div>
+</section>
+
+<div class="foot-links">
+  <span>YDST Scholarship Test · Product spec</span>
+  <a href="https://abhinavthak.github.io/ydst-scholarship-prototype/" target="_blank" rel="noopener">Scholarship page prototype</a>
+  <a href="https://abhinavthak.github.io/ydst-payments-dashboard/" target="_blank" rel="noopener">Admin dashboard prototype</a>
+</div>
+
+  </main>
+</div>
+
+<script>
+// ---- Heading ids, table of contents, section links ----
+(function(){
+  const slug = n => 'sec-' + n.replace(/\.$/,'').replace(/\./g,'-');
+  const ids = {};
+  document.querySelectorAll('section').forEach(sec => {
+    sec.querySelectorAll('h2 .num, h3 .num').forEach(num => {
+      const n = num.textContent.trim().replace(/\.$/,'');
+      const h = num.parentElement;
+      if (h.tagName === 'H2') { ids[n] = sec.id; }
+      else { h.id = h.id || slug(n); ids[n] = h.id; }
+    });
+  });
+  // TOC
+  const toc = document.getElementById('toc-card');
+  let html = '<div class="toc-h">On this page</div>';
+  document.querySelectorAll('section').forEach(sec => {
+    const h2 = sec.querySelector('h2'); if (!h2) return;
+    const clone = h2.cloneNode(true);
+    clone.querySelectorAll('.tag').forEach(t => t.remove());
+    const num = clone.querySelector('.num');
+    const idx = num ? num.textContent.replace('.', '') : '';
+    const label = clone.textContent.replace(/^[0-9A-Z]+\.\s*/, '').trim();
+    let sub = '';
+    sec.querySelectorAll('h3').forEach(h3 => {
+      const c = h3.cloneNode(true); c.querySelectorAll('.tag').forEach(t => t.remove());
+      const n = c.querySelector('.num'); const nt = n ? n.textContent : '';
+      if (n) n.remove();
+      sub += '<a href="#' + h3.id + '" data-t="' + h3.id + '"><span class="idx">' + nt + '</span><span class="lbl">' + c.textContent.trim() + '</span></a>';
+    });
+    html += '<div class="grp" data-sec="' + sec.id + '"><a href="#' + sec.id + '" data-t="' + sec.id + '"><span class="idx">' + idx + '</span><span class="lbl">' + label + '</span></a>' + (sub ? '<div class="sub">' + sub + '</div>' : '') + '</div>';
+  });
+  toc.innerHTML = html;
+  // Scroll spy
+  const heads = Array.from(document.querySelectorAll('section > h2, section h3')).filter(h => h.closest('section'));
+  let ticking = false;
+  function spy(){
+    ticking = false;
+    let cur = heads[0];
+    for (const h of heads) { if (h.getBoundingClientRect().top < 140) cur = h; else break; }
+    if (!cur) return;
+    const sec = cur.closest('section');
+    toc.querySelectorAll('.grp').forEach(g => g.classList.toggle('open', g.dataset.sec === sec.id));
+    toc.querySelectorAll('a').forEach(a => a.classList.remove('on'));
+    const top = toc.querySelector('.grp[data-sec="' + sec.id + '"] > a'); if (top) top.classList.add('on');
+    if (cur.tagName === 'H3') { const s2 = toc.querySelector('.sub a[data-t="' + cur.id + '"]'); if (s2) s2.classList.add('on'); }
+  }
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, {passive:true});
+  spy();
+  // Clickable section references, e.g. (4.1), 3.4, (6)
+  const skip = el => el.closest('script,style,svg,code,a,button,input,select,textarea,#calc-root,.num,h2,h3,.toc');
+  const roots = [document.querySelector('.hero p'), document.getElementById('main')].filter(Boolean);
+  const re = /(\b\d{1,2}\.\d{1,2}\b)(?![\d%])|\((\d{1,2}|[AB])\)/g;
+  roots.forEach(root => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => (!n.parentElement || skip(n.parentElement)) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const t = node.nodeValue; re.lastIndex = 0; if (!re.test(t)) return; re.lastIndex = 0;
+      const frag = document.createDocumentFragment(); let last = 0, m, any = false;
+      while ((m = re.exec(t))) {
+        const key = m[1] || m[2]; const id = ids[key];
+        const before = t.slice(Math.max(0, m.index - 1), m.index);
+        if (!id || /[₹\d,.]/.test(before)) continue;
+        any = true;
+        const start = m[1] ? m.index : m.index + 1;
+        frag.appendChild(document.createTextNode(t.slice(last, start)));
+        const a = document.createElement('a'); a.className = 'xref'; a.href = '#' + id; a.textContent = key;
+        a.title = 'Go to ' + key;
+        frag.appendChild(a); last = start + key.length;
+      }
+      if (!any) return;
+      frag.appendChild(document.createTextNode(t.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a.xref'); if (!a) return;
+    const el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
+    const h = el.tagName === 'SECTION' ? el.querySelector('h2') : el;
+    h.classList.remove('flash'); void h.offsetWidth; h.classList.add('flash');
+  });
+  // Print: open every collapsible
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach(d => { d.dataset.wasOpen = d.open ? '1' : ''; d.open = true; }));
+  window.addEventListener('afterprint', () => document.querySelectorAll('details').forEach(d => { d.open = d.dataset.wasOpen === '1'; }));
+})();
+</script>
+
+<script>
+// ---- Score to discount calculator (reads the same levers as 3.3) ----
+(function(){
+  const LEVERS=[[51,50],[41,30],[31,15]], VALID_DAYS=30;
+  const root=document.getElementById('calc-root'); if(!root) return;
+  let score=46, paper='PG', voided=false;
+  const disc=s=>{for(const [t,d] of LEVERS) if(s>=t) return d; return 0;};
+  const pct=v=>(v/60*100).toFixed(2)+'%';
+  root.innerHTML='<div class="calc score-calc"><div class="calc-head"><div><h4>Try a score</h4><p>What the learner sees and what goes to OneCRM (T5, T6).</p></div></div>'+
+    '<div class="controls">'+
+      '<div class="ctl"><label for="sc-score">Score out of 60</label><div class="field"><input id="sc-score" type="range" min="0" max="60" value="'+score+'"><span class="val" id="sc-val">'+score+'</span></div></div>'+
+      '<div class="ctl"><label for="sc-paper">Paper</label><div class="field"><select id="sc-paper"><option value="PG">Master\'s (PG)</option><option value="UG">Bachelor\'s (UG)</option></select></div></div>'+
+      '<div class="ctl"><label for="sc-void">Proctoring</label><div class="field"><select id="sc-void"><option value="0">Clear</option><option value="1">Flagged (void)</option></select></div></div>'+
+    '</div>'+
+    '<div class="lever-mark"><b id="sc-mark"></b></div>'+
+    '<div class="lever"><i style="flex:31;background:#D9D7D3"></i><i style="flex:10;background:#F2B8A5"></i><i style="flex:10;background:#E0704F"></i><i style="flex:10;background:#A8300F"></i></div>'+
+    '<div class="lever-t"><span style="left:0;transform:none">0</span><span style="left:'+pct(31)+'">31</span><span style="left:'+pct(41)+'">41</span><span style="left:'+pct(51)+'">51</span><span style="left:100%;transform:translateX(-100%)">60</span></div>'+
+    '<div class="out" id="sc-out" style="margin-top:14px"></div><div class="calc-note" id="sc-note"></div></div>';
+  const $=id=>root.querySelector('#'+id);
+  function update(){
+    const d=voided?0:disc(score);
+    $('sc-val').textContent=score;
+    $('sc-mark').style.left='calc('+pct(score)+' - 1.5px)';
+    $('sc-out').innerHTML=
+      '<div class="box"><span>Discount</span><b>'+(d?d+'% off':'None')+'</b></div>'+
+      '<div class="box"><span>Scholarship code</span><b class="mono" style="font-size:14px">'+(d?'YD'+paper+'-K7Q2M':'—')+'</b></div>'+
+      '<div class="box"><span>ydst_stage</span><b>'+(voided?'Not qualified (void)':d?'Discount active':'Not qualified')+'</b></div>'+
+      '<div class="box"><span>Next</span><b style="font-size:13.5px">'+(d?'Code valid '+VALID_DAYS+' days':'Retake from the 1st of next month')+'</b></div>';
+    $('sc-note').textContent=voided?'A flagged attempt earns no discount and still uses up the month.':d?'The code is pushed to the fee system and the lead is assigned to a counsellor.':'Score '+(31-score)+' more to unlock 15% off.';
+  }
+  $('sc-score').addEventListener('input',e=>{score=+e.target.value;update();});
+  $('sc-paper').addEventListener('change',e=>{paper=e.target.value;update();});
+  $('sc-void').addEventListener('change',e=>{voided=e.target.value==='1';update();});
+  update();
+})();
+</script>
+</body>
+</html>
