@@ -252,6 +252,9 @@ section h2,section h3{scroll-margin-top:16px}
 }
 
 /* YDST additions */
+.cset .add{margin-top:8px;border:1px dashed var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--indigo);cursor:pointer;font-family:inherit}
+.cset .rm{border:0;background:none;color:var(--mute);font-size:12px;cursor:pointer;font-family:inherit;text-decoration:underline}
+.cset .rm:hover{color:#B42318}
 .flow .step .tp{font-style:normal;font-weight:700;background:rgba(255,255,255,.2);border-radius:4px;padding:0 5px;margin-left:2px}
 .hero{background:linear-gradient(115deg,#7a1a0b 0%,#b0522a 45%,#2E2A83 100%)}
 .s1{background:#4B5261}.s2{background:#4A3FA0}.s4{background:#B0522A}.s5{background:#0E7A63}
@@ -272,7 +275,7 @@ section h2,section h3{scroll-margin-top:16px}
 <div class="hero"><div class="hero-in"><div>
   <div class="kicker">PRODUCT SPEC · UPGRAD · YOURDEGREE</div>
   <h1>YDST Scholarship Test</h1>
-  <p>A learner registers on the scholarship page, pays a one-time ₹100 fee and takes a 60-minute test on Gradr. Their score unlocks a discount on first-semester tuition straight away. Every step is sent to OneCRM so upGrad counsellors can follow up. The full journey is in 3.1, and every CRM touch point is in 8.1.</p>
+  <p>A learner registers on the scholarship page, pays a one-time registration fee and takes a 60-minute test on Gradr. Their score unlocks a discount on first-semester tuition straight away. Every step is sent to OneCRM so upGrad counsellors can follow up. The fee and the score-to-discount levers are set by admins (9.2). The full journey is in 3.1, and every CRM touch point is in 8.1.</p>
   <div class="meta">
     <span><b>Owner</b>: Abhinav Thakur (PM)</span>
     <span><b>Design</b>: TBD</span>
@@ -299,14 +302,25 @@ section h2,section h3{scroll-margin-top:16px}
     <h4>At a glance</h4>
     <dl>
       <dt>What</dt><dd>An online scholarship test for upGrad's online degree programmes. Learners register, pay ₹100 once, take the test on Gradr and get a tuition discount based on their score.</dd>
-      <dt>Fee</dt><dd>₹100, one-time and valid for life. It covers one test attempt every calendar month, with no fee for retakes (3.2).</dd>
-      <dt>Discount</dt><dd>One target score per discount: <b>51+ → 50% off</b>, <b>41+ → 30% off</b>, <b>31+ → 15% off</b> first-semester tuition. Below 31, no discount; the learner can retake next month (3.3).</dd>
-      <dt>Journey</dt><dd>Scholarship page → register with OTP → pay ₹100 → payment confirmed → redirect to Gradr → real-time result → discount activated (3.1).</dd>
+      <dt>Fee</dt><dd>One-time and valid for life, set by admins in settings. Default <b>₹100</b>. It covers one test attempt every calendar month, with no fee for retakes (3.2).</dd>
+      <dt>Discount</dt><dd>One target score per discount, set by admins in settings. Defaults: <b>51+ → 50% off</b>, <b>41+ → 30% off</b>, <b>31+ → 15% off</b> first-semester tuition. Below the lowest target, no discount; the learner can retake next month (3.3).</dd>
+      <dt>Configurable</dt><dd>Registration fee and score-to-discount levers are edited in the admin dashboard (9.2), with no code release. A change applies only from that moment: learners who already paid keep their lifetime registration, and finished attempts keep the discount they earned (3.5).</dd>
+      <dt>Journey</dt><dd>Scholarship page → register with OTP → pay the fee → payment confirmed → redirect to Gradr → real-time result → discount activated (3.1).</dd>
       <dt>CRM</dt><dd>The lead is created in OneCRM at registration and updated at every later step, so counsellors always see where the learner is (8).</dd>
       <dt>Built on</dt><dd>YDST scholarship page (existing prototype), upGrad payment gateway, Gradr test platform, OneCRM, fee system, OTP/SMS.</dd>
       <dt>Key risks</dt><dd>Gradr's result callback must be reliable and secure, or discounts can't be activated in real time (6, 7). Lead updates to OneCRM must never be lost (8.3).</dd>
       <dt>Still to settle</dt><dd>Gradr and OneCRM API details, refund policy, and the code validity period (see the open questions in 11.1).</dd>
     </dl>
+  </div>
+  <div class="whatsnew">
+    <h4>What changed in this version · 15 Nov 2026</h4>
+    <ul>
+      <li><b>Registration fee and discount levers are now configurable</b> by admins in the dashboard (9.2). ₹100 and 31/41/51 → 15/30/50% are the defaults.</li>
+      <li>New rules for what a change affects, and what it never touches (3.5). Each payment and attempt records the settings it used.</li>
+      <li>The score calculator in 3.3 now lets you edit the levers, and checks them the way the settings form will.</li>
+      <li>New acceptance criteria for settings (10.2) and new lead fields for the fee paid and settings version (8.2).</li>
+    </ul>
+    <div class="mini">Full history in the change log (B).</div>
   </div>
 
   <h3><span class="num">0.1</span>Problem</h3>
@@ -318,11 +332,12 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><th>Term</th><th>Meaning</th></tr>
     <tr><td>YDST</td><td>YourDegree Scholarship Test. 60 multiple-choice questions, 60 minutes, 1 mark each, no negative marking.</td></tr>
     <tr><td>Scholarship page</td><td>The public landing page with the registration form. Prototype: ydst-scholarship-prototype.</td></tr>
-    <tr><td>Registration fee</td><td>₹100, paid once per learner. Never charged again, even for retakes.</td></tr>
+    <tr><td>Registration fee</td><td>Paid once per learner and never charged again, even for retakes. The amount is set in settings (9.2). Default ₹100.</td></tr>
     <tr><td>Learner</td><td>One person, identified by their OTP-verified mobile number. One mobile number = one learner = one lead.</td></tr>
     <tr><td>Attempt</td><td>One sitting of the test. A learner gets one attempt per calendar month (IST).</td></tr>
     <tr><td>Paper</td><td>The question set. <b>Master's</b> (advanced) for MBA, MCA, MA, MCom, MSc. <b>Bachelor's</b> (foundation) for BBA, BCA, BA, BCom, BSc. Chosen from the programme at registration.</td></tr>
-    <tr><td>Discount lever</td><td>A target score and the discount it unlocks: 31+ → 15%, 41+ → 30%, 51+ → 50%.</td></tr>
+    <tr><td>Discount lever</td><td>A target score and the discount it unlocks. Set in settings (9.2). Defaults: 31+ → 15%, 41+ → 30%, 51+ → 50%.</td></tr>
+    <tr><td>Settings version</td><td>A numbered snapshot of the fee and levers, saved every time an admin changes them. Every payment and every attempt stores the version it used.</td></tr>
     <tr><td>Scholarship code</td><td>A unique code issued when an attempt hits a discount lever, e.g. <code>YDPG-K7Q2M</code>. It carries the discount and is valid for 30 days.</td></tr>
     <tr><td>Gradr</td><td>The external test platform at gradr.in, where the test is taken and scored.</td></tr>
     <tr><td>OneCRM</td><td>upGrad's CRM at app.onecrm.co.in. Holds the lead that counsellors work on.</td></tr>
@@ -402,8 +417,8 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">3.</span>How it works</h2>
   <p>Four ideas hold the product together:</p>
   <ol>
-    <li><b>Pay once, test monthly.</b> The ₹100 fee is a lifetime registration. It unlocks one attempt every calendar month.</li>
-    <li><b>The score decides the discount.</b> Three target scores, each with one discount. No manual approvals, no exceptions.</li>
+    <li><b>Pay once, test monthly.</b> The registration fee (default ₹100) is a lifetime registration. It unlocks one attempt every calendar month.</li>
+    <li><b>The score decides the discount.</b> Each target score unlocks one discount. Admins set the levers; no one approves individual discounts, and there are no exceptions.</li>
     <li><b>Results are instant.</b> Gradr sends the score back the moment the test is submitted, and the discount is active before the learner leaves the result page.</li>
     <li><b>The CRM always knows.</b> The lead is created at registration and updated at every step (8.1).</li>
   </ol>
@@ -527,13 +542,13 @@ section h2,section h3{scroll-margin-top:16px}
   </ul>
 
   <h3><span class="num">3.3</span>Discount levers</h3>
-  <p>Each discount has one target score. The values live in configuration (11), so they can change without a code release. Changes apply to attempts submitted after the change.</p>
+  <p>Each discount has one target score. Admins set the levers in settings (9.2) without a code release. The table shows the <b>defaults</b>. A change applies to attempts submitted after it is saved (3.5).</p>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:24%"><col style="width:52%"></colgroup>
-    <tr><th>Target score</th><th>Discount</th><th>Applies to</th></tr>
+    <tr><th>Target score (default)</th><th>Discount (default)</th><th>Applies to</th></tr>
     <tr><td><b>51</b> or more</td><td><b>50%</b> off</td><td rowspan="3">First-semester tuition of the programme the learner tested for, at any of the 18 partner universities</td></tr>
     <tr><td><b>41</b> or more</td><td><b>30%</b> off</td></tr>
     <tr><td><b>31</b> or more</td><td><b>15%</b> off</td></tr>
-    <tr><td>Below 31</td><td>None</td><td>Learner can retake next month at no cost</td></tr>
+    <tr><td>Below the lowest target</td><td>None</td><td>Learner can retake next month at no cost</td></tr>
   </table></div>
   <div id="calc-root"></div>
 
@@ -552,6 +567,19 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><span class="pill p-sent">Enrolled</span></td><td>Enrolled using a scholarship code</td><td>Fee system (T7)</td></tr>
     <tr><td><span class="pill p-void">Refunded</span></td><td>Fee refunded. Can't test until they pay again</td><td>Finance (T7)</td></tr>
   </table></div>
+
+  <h3><span class="num">3.5</span>When settings change</h3>
+  <p>Admins can change the fee and the levers at any time (9.2). A change never reaches back into the past:</p>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:34%"><col style="width:66%"></colgroup>
+    <tr><th>Who</th><th>What happens after a change</th></tr>
+    <tr><td>Learner who already paid</td><td>Keeps their lifetime registration. Never asked to pay the difference, and never refunded part of it.</td></tr>
+    <tr><td>Learner with checkout open</td><td>Pays the amount on the order they opened. The order expires after 30 minutes; a new order uses the new fee.</td></tr>
+    <tr><td>Learner who hasn't paid</td><td>Sees and pays the new fee next time they load the page or open checkout.</td></tr>
+    <tr><td>Attempt already scored</td><td>Keeps its discount and code. Codes are never reissued or cancelled because levers changed.</td></tr>
+    <tr><td>Attempt in progress</td><td>Scored with the levers live when it was <b>submitted</b>.</td></tr>
+    <tr><td>Scholarship page copy</td><td>Fee, target scores and discounts update everywhere on the page within 5 minutes (4.2).</td></tr>
+    <tr><td>OneCRM</td><td>No bulk update. New touch points carry the fee paid and the settings version (8.2).</td></tr>
+  </table></div>
 </section>
 
 <section id="landing">
@@ -567,7 +595,7 @@ section h2,section h3{scroll-margin-top:16px}
     <li>Every "Register" button on the page opens the same registration form in a pop-up.</li>
   </ul>
   <h3><span class="num">4.2</span>Page copy that must match the rules</h3>
-  <p>These figures appear on the page and must come from configuration, not be typed into the copy: fee (₹100, one-time), target scores and discounts (3.3), test length (60 questions, 60 minutes), attempts (one a month), code validity (30 days), number of partner universities.</p>
+  <p>These figures appear on the page and must come from settings (9.2), not be typed into the copy or baked into images: registration fee, target scores and discounts (3.3), test length (60 questions, 60 minutes), attempts (one a month), code validity (30 days), number of partner universities.</p>
   <h3><span class="num">4.3</span>Registration form fields</h3>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:14%"><col style="width:62%"></colgroup>
     <tr><th>Field</th><th>Required</th><th>Rules</th></tr>
@@ -580,8 +608,8 @@ section h2,section h3{scroll-margin-top:16px}
   </table></div>
   <h3><span class="num">4.4</span>Requirements</h3>
   <ul>
-    <li>The submit button reads <b>Pay ₹100 &amp; Start Test</b> and stays disabled until every field is valid and the OTP is verified.</li>
-    <li>A fee box above the button shows: Registration fee ₹100 · One-time payment · Valid for life · 1 test a month · Free retakes.</li>
+    <li>The submit button reads <b>Pay ₹&lt;fee&gt; &amp; Start Test</b> (e.g. Pay ₹100 &amp; Start Test) and stays disabled until every field is valid and the OTP is verified.</li>
+    <li>A fee box above the button shows: Registration fee ₹&lt;fee&gt; · One-time payment · Valid for life · 1 test a month · Free retakes.</li>
     <li>If the mobile number has already paid, skip payment: show "Welcome back, &lt;name&gt;" and a <b>Start test</b> button (or the next attempt date if this month is used).</li>
     <li>If the mobile number is registered but unpaid, prefill the form and go to payment.</li>
     <li>UTM parameters and the landing URL are kept from the first page view through to the lead (T1).</li>
@@ -589,14 +617,14 @@ section h2,section h3{scroll-margin-top:16px}
 </section>
 
 <section id="payment">
-  <h2><span class="num">5.</span>Payment (₹100)</h2>
+  <h2><span class="num">5.</span>Payment</h2>
   <div class="callout info">
     <div class="ttl">↔ How it connects</div>
     Starts after registration (4). On success, the learner goes to Gradr (6). Every outcome updates the lead (T2, T3).
   </div>
   <h3><span class="num">5.1</span>Checkout</h3>
   <ol>
-    <li>The backend creates an order: amount ₹100 (incl. GST), learner ID, order ID. The order ID is sent to OneCRM with T2.</li>
+    <li>The backend creates an order for the fee live in settings at that moment (default ₹100, incl. GST), with learner ID, order ID and settings version. The amount is locked on the order. Order ID and amount are sent to OneCRM with T2.</li>
     <li>The gateway checkout opens on top of the page: UPI, cards, net banking and wallets.</li>
     <li>The learner pays. The page shows "Confirming your payment…" until the backend confirms.</li>
     <li>The backend marks the payment paid <b>only</b> when the gateway's signed webhook (or a server-side status check) says so. The browser redirect alone is never trusted.</li>
@@ -712,9 +740,11 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><code>ydst_stage</code></td><td>Picklist</td><td>The stages in 3.4</td></tr>
     <tr><td><code>ydst_payment_status</code></td><td>Picklist</td><td>Not started, Pending, Paid, Failed, Refunded</td></tr>
     <tr><td><code>ydst_txn_id</code></td><td>Text</td><td>Gateway transaction ID</td></tr>
+    <tr><td><code>ydst_fee_paid</code></td><td>Number</td><td>Amount actually paid, in ₹ (the fee can change over time)</td></tr>
+    <tr><td><code>ydst_settings_version</code></td><td>Number</td><td>Settings version used by the latest payment or attempt</td></tr>
     <tr><td><code>ydst_attempts</code></td><td>Number</td><td>Submitted and void attempts so far</td></tr>
     <tr><td><code>ydst_last_score</code> / <code>ydst_best_score</code></td><td>Number</td><td>0 to 60</td></tr>
-    <tr><td><code>ydst_discount_pct</code></td><td>Number</td><td>0, 15, 30, 50 (best active)</td></tr>
+    <tr><td><code>ydst_discount_pct</code></td><td>Number</td><td>Best active discount, 0 to 100 (defaults give 0, 15, 30, 50)</td></tr>
     <tr><td><code>ydst_code</code> / <code>ydst_code_expiry</code></td><td>Text / Date</td><td>Best active code and its expiry</td></tr>
     <tr><td><code>ydst_next_attempt</code></td><td>Date</td><td>First day the learner can test again</td></tr>
   </table></div>
@@ -735,16 +765,46 @@ section h2,section h3{scroll-margin-top:16px}
 <section id="admin">
   <h2><span class="num">9.</span>Admin dashboard</h2>
   <p>An internal dashboard for the business, finance and sales teams. Prototype with sample data: <a href="https://abhinavthak.github.io/ydst-payments-dashboard/" target="_blank" rel="noopener">ydst-payments-dashboard</a>.</p>
+  <h3><span class="num">9.1</span>Tabs</h3>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
     <tr><th>Tab</th><th>What it shows</th></tr>
     <tr><td>Overview</td><td>Funnel (started → paid → tested → scored 31+ → enrolled), best-score mix, score distribution with the three target scores, and follow-up lists: payment not completed, paid but no test, code expiring soon, best score 27 to 30.</td></tr>
     <tr><td>Registration fees</td><td>One row per learner with fee status and every payment attempt (opened time, amount, result, gateway response, settled time, transaction ID). Filters, status tabs, CSV export, refresh payment status.</td></tr>
     <tr><td>Test results</td><td>One row per attempt with score, discount, code and code status. Filters by paper, month, code status; tabs by discount; CSV export.</td></tr>
     <tr><td>Learner profile</td><td>Opens from any tab. Journey, fee history and every attempt for one learner.</td></tr>
+    <tr><td>Settings</td><td>Registration fee and discount levers (9.2), with change history.</td></tr>
   </table></div>
   <ul>
     <li>Access by login, with roles. Only finance can see transaction IDs and start refunds. <span class="tag gap">Roles to confirm</span></li>
   </ul>
+
+  <h3><span class="num">9.2</span>Scholarship settings</h3>
+  <p>One settings form for the whole programme. Saving creates a new settings version that goes live at once (3.5).</p>
+  <div class="wdg">
+    <div class="wdg-h"><b>Registration fee</b><span class="whh">Settings</span></div>
+    <div class="wrap"><table class="fixed wt"><colgroup><col style="width:26%"><col style="width:14%"><col style="width:16%"><col style="width:44%"></colgroup>
+      <tr><th>Field</th><th>Required</th><th>Default</th><th>Rules</th></tr>
+      <tr><td>Fee amount (₹)</td><td><span class="rq r">Required</span></td><td>100</td><td>Whole rupees, ₹1 to ₹10,000. Includes GST. <span class="tag gap">Range to confirm</span></td></tr>
+    </table></div>
+  </div>
+  <div class="wdg">
+    <div class="wdg-h"><b>Discount levers</b><span class="whh">Settings</span><span class="wj">One row per lever. Add or remove rows; 1 to 5 levers.</span></div>
+    <div class="wrap"><table class="fixed wt"><colgroup><col style="width:26%"><col style="width:14%"><col style="width:16%"><col style="width:44%"></colgroup>
+      <tr><th>Field</th><th>Required</th><th>Default</th><th>Rules</th></tr>
+      <tr><td>Target score</td><td><span class="rq r">Required</span></td><td>31, 41, 51</td><td>Whole number, 1 to 60. No two levers share a target score.</td></tr>
+      <tr><td>Discount (%)</td><td><span class="rq r">Required</span></td><td>15, 30, 50</td><td>Whole number, 1 to 100. A higher target score must give a higher discount.</td></tr>
+    </table></div>
+  </div>
+  <ul>
+    <li><b>Check before saving:</b> the form shows a preview ("Score 31–40 → 15% off …") and a confirmation listing what changes.</li>
+    <li><b>Who can edit:</b> only the Programme admin role. Everyone else can see the settings and history but not change them. <span class="tag gap">Roles to confirm</span></li>
+    <li><b>History:</b> every save is listed with version, who changed it, when, and old → new values. Old versions can be viewed but not edited; to go back, save the old values as a new version.</li>
+    <li><b>Scheduled changes:</b> not in v1. Changes go live when saved. <span class="tag ph">v2</span></li>
+  </ul>
+  <div class="callout ok">
+    <div class="ttl">⚙ Backend requirement</div>
+    The fee and levers are read from the live settings version by every service that needs them: scholarship page, checkout, result scoring, messages and the dashboard. None of them keeps its own copy. Each order and attempt stores the version it used.
+  </div>
 </section>
 
 <section id="edge-cases">
@@ -780,6 +840,17 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>An attempt flagged by proctoring with score 55</td><td>Gradr's callback arrives</td><td>the attempt is Void, no code is issued, and it counts as the month's attempt</td></tr>
     <tr><td>A callback with an invalid signature</td><td>it reaches the webhook</td><td>it is rejected and logged; nothing changes</td></tr>
   </table></div>
+  <h4 style="font-size:14.5px;margin:18px 0 6px">Settings</h4>
+  <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
+    <tr><th>Given</th><th>When</th><th>Then</th></tr>
+    <tr><td>Fee is ₹100</td><td>an admin saves ₹199</td><td>a new settings version goes live, and within 5 minutes the page, fee box and pay button show ₹199</td></tr>
+    <tr><td>A learner paid ₹100</td><td>the fee changes to ₹199</td><td>the learner is never asked to pay again and can keep testing monthly</td></tr>
+    <tr><td>A learner with checkout open at ₹100</td><td>the fee changes to ₹199, then they pay</td><td>they are charged ₹100, the amount on their order</td></tr>
+    <tr><td>Levers are 31/41/51 → 15/30/50</td><td>an admin changes 41 → 30% to 45 → 35% and saves</td><td>an attempt submitted afterwards scoring 44 gets 15% off, and one scoring 46 gets 35% off</td></tr>
+    <tr><td>An attempt scored 44 earned 30% before the change</td><td>the levers change</td><td>its code and discount stay as they are</td></tr>
+    <tr><td>An admin enters two levers with the same target score, or a higher score with a lower discount</td><td>they try to save</td><td>the form refuses to save and highlights the problem</td></tr>
+    <tr><td>A user without the Programme admin role</td><td>opens Settings</td><td>they can see values and history but can't edit</td></tr>
+  </table></div>
   <h4 style="font-size:14.5px;margin:18px 0 6px">CRM sync</h4>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
     <tr><th>Given</th><th>When</th><th>Then</th></tr>
@@ -799,7 +870,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>OneCRM</td><td>Lead create and update API with custom fields (8.2), and counsellor assignment at T6.</td></tr>
     <tr><td>Fee system</td><td>Receives scholarship codes and applies the discount to first-semester tuition. Reports when a code is used (T7).</td></tr>
     <tr><td>OTP, SMS, email, WhatsApp</td><td>Existing providers for OTP and the messages in 7.4.</td></tr>
-    <tr><td>Configuration</td><td>Fee amount, target scores and discounts, code validity days, attempts per month. Changeable without a release.</td></tr>
+    <tr><td>Settings</td><td>Admin-editable: registration fee and discount levers (9.2), versioned. Fixed in v1 (change needs a release): code validity (30 days), one attempt per calendar month.</td></tr>
   </table></div>
   <h3><span class="num">11.1</span>Open questions</h3>
   <ol class="oq-list">
@@ -815,9 +886,9 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">12.</span>Release plan</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:14%"><col style="width:86%"></colgroup>
     <tr><th>Phase</th><th>What ships</th></tr>
-    <tr><td>v1</td><td>Scholarship page, registration with OTP, ₹100 payment, Gradr handoff and result callback, discount codes in the fee system, OneCRM touch points T1 to T7, result page, SMS and email messages.</td></tr>
+    <tr><td>v1</td><td>Scholarship page, registration with OTP, ₹100 payment, Gradr handoff and result callback, discount codes in the fee system, OneCRM touch points T1 to T7, result page, SMS and email messages, settings for fee and discount levers (9.2).</td></tr>
     <tr><td>v1.1</td><td>Admin dashboard (9), WhatsApp reminders, counsellor follow-up lists.</td></tr>
-    <tr><td>v2</td><td>Section-wise score report for learners, practice tests, configurable campaigns (e.g. bonus discount weeks).</td></tr>
+    <tr><td>v2</td><td>Section-wise score report for learners, practice tests, scheduled settings changes and time-limited campaigns (e.g. bonus discount weeks).</td></tr>
   </table></div>
 </section>
 
@@ -845,6 +916,8 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><code>discount_activated</code></td><td>Code issued</td><td><code>discount_pct</code></td><td>15, 30, 50</td></tr>
     <tr><td><code>code_copied</code></td><td>Copy tapped on result page</td><td><code>discount_pct</code></td><td>15, 30, 50</td></tr>
     <tr><td colspan="4" class="mini"><b>Server-side CRM events</b></td></tr>
+    <tr><td rowspan="2"><code>settings_saved</code></td><td rowspan="2">Admin saves settings</td><td><code>version</code></td><td>New settings version</td></tr>
+    <tr><td><code>changed</code></td><td>fee, levers</td></tr>
     <tr><td rowspan="2"><code>crm_sync</code></td><td rowspan="2">Touch point delivered to OneCRM</td><td><code>touch_point</code></td><td>T1 to T7</td></tr>
     <tr><td><code>retries</code></td><td>Number of retries</td></tr>
   </table>
@@ -855,6 +928,7 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">B.</span>Appendix: change log</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
     <tr><th>Date</th><th>Change</th></tr>
+    <tr><td>15 Nov 2026 (v2)</td><td>Registration fee and score-to-discount levers made configurable in admin settings (9.2), with versioning, change rules (3.5), editable calculator (3.3), new lead fields (8.2) and acceptance criteria (10.2).</td></tr>
     <tr><td>15 Nov 2026</td><td>First draft: journey from scholarship page to discount activation, ₹100 lifetime fee, Gradr handoff, discount levers (31/41/51), OneCRM touch points T1 to T7, admin dashboard.</td></tr>
   </table></div>
 </section>
@@ -956,39 +1030,72 @@ section h2,section h3{scroll-margin-top:16px}
 </script>
 
 <script>
-// ---- Score to discount calculator (reads the same levers as 3.3) ----
+// ---- Settings + score calculator (mirrors the settings form in 9.2) ----
 (function(){
-  const LEVERS=[[51,50],[41,30],[31,15]], VALID_DAYS=30;
+  const DEF={fee:100,levers:[{t:31,d:15},{t:41,d:30},{t:51,d:50}]};
   const root=document.getElementById('calc-root'); if(!root) return;
-  let score=46, paper='PG', voided=false;
-  const disc=s=>{for(const [t,d] of LEVERS) if(s>=t) return d; return 0;};
+  let cfg=JSON.parse(JSON.stringify(DEF)), score=46, paper='PG', voided=false;
+  const RAMP=['#F2B8A5','#E0704F','#C2451F','#A8300F','#7A1F08'];
+  const inr=v=>'₹'+Number(v).toLocaleString('en-IN');
   const pct=v=>(v/60*100).toFixed(2)+'%';
-  root.innerHTML='<div class="calc score-calc"><div class="calc-head"><div><h4>Try a score</h4><p>What the learner sees and what goes to OneCRM (T5, T6).</p></div></div>'+
-    '<div class="controls">'+
-      '<div class="ctl"><label for="sc-score">Score out of 60</label><div class="field"><input id="sc-score" type="range" min="0" max="60" value="'+score+'"><span class="val" id="sc-val">'+score+'</span></div></div>'+
-      '<div class="ctl"><label for="sc-paper">Paper</label><div class="field"><select id="sc-paper"><option value="PG">Master\'s (PG)</option><option value="UG">Bachelor\'s (UG)</option></select></div></div>'+
-      '<div class="ctl"><label for="sc-void">Proctoring</label><div class="field"><select id="sc-void"><option value="0">Clear</option><option value="1">Flagged (void)</option></select></div></div>'+
-    '</div>'+
-    '<div class="lever-mark"><b id="sc-mark"></b></div>'+
-    '<div class="lever"><i style="flex:31;background:#D9D7D3"></i><i style="flex:10;background:#F2B8A5"></i><i style="flex:10;background:#E0704F"></i><i style="flex:10;background:#A8300F"></i></div>'+
-    '<div class="lever-t"><span style="left:0;transform:none">0</span><span style="left:'+pct(31)+'">31</span><span style="left:'+pct(41)+'">41</span><span style="left:'+pct(51)+'">51</span><span style="left:100%;transform:translateX(-100%)">60</span></div>'+
-    '<div class="out" id="sc-out" style="margin-top:14px"></div><div class="calc-note" id="sc-note"></div></div>';
-  const $=id=>root.querySelector('#'+id);
+  const sorted=()=>cfg.levers.slice().sort((a,b)=>a.t-b.t);
+  function problems(){
+    const p=[], L=sorted();
+    if(!(Number.isInteger(cfg.fee)&&cfg.fee>=1&&cfg.fee<=10000)) p.push('fee must be ₹1 to ₹10,000');
+    if(!L.length) p.push('add at least one lever');
+    L.forEach(l=>{ if(!(Number.isInteger(l.t)&&l.t>=1&&l.t<=60)) p.push('target scores must be 1 to 60'); if(!(Number.isInteger(l.d)&&l.d>=1&&l.d<=100)) p.push('discounts must be 1% to 100%'); });
+    for(let k=1;k<L.length;k++){ if(L[k].t===L[k-1].t) p.push('two levers share a target score'); else if(L[k].d<=L[k-1].d) p.push('a higher target score must give a higher discount'); }
+    return [...new Set(p)];
+  }
+  const disc=sc=>{let d=0; sorted().forEach(l=>{ if(sc>=l.t) d=l.d; }); return d;};
+  function settingsHTML(){
+    const rows=cfg.levers.map((l,k)=>'<tr><td>Lever '+(k+1)+'</td><td><input type="number" min="1" max="60" data-k="'+k+'" data-f="t" value="'+l.t+'" aria-label="Lever '+(k+1)+' target score"></td><td><input type="number" min="1" max="100" data-k="'+k+'" data-f="d" value="'+l.d+'" aria-label="Lever '+(k+1)+' discount"></td><td>'+(cfg.levers.length>1?'<button type="button" class="rm" data-rm="'+k+'" aria-label="Remove lever '+(k+1)+'">Remove</button>':'')+'</td></tr>').join('');
+    return '<div class="cset"><div class="cset-h"><b>Scholarship settings</b><span class="mini">What the admin enters in 9.2. Edit any value to see the effect.</span><button type="button" data-reset="1">Reset to defaults</button></div>'+
+      '<div class="cset-row" style="margin:0 0 12px"><label>Registration fee (₹)<input type="number" min="1" max="10000" id="cs-fee" value="'+cfg.fee+'"></label><div class="cset-ro"><span>Pay button reads</span><b>Pay '+inr(cfg.fee||0)+' &amp; Start Test</b></div></div>'+
+      '<div class="wrap"><table class="cset-t"><tr><th></th><th>Target score</th><th>Discount (%)</th><th></th></tr>'+rows+'</table></div>'+
+      (cfg.levers.length<5?'<button type="button" class="add" data-add="1">+ Add lever</button>':'')+
+      '<div id="cs-err"></div></div>';
+  }
+  function build(){
+    root.innerHTML='<div class="calc score-calc">'+settingsHTML()+
+      '<div class="calc-head" style="margin-top:18px"><div><h4>Try a score</h4><p>What the learner sees and what goes to OneCRM (T5, T6), using the settings above.</p></div></div>'+
+      '<div class="controls">'+
+        '<div class="ctl"><label for="sc-score">Score out of 60</label><div class="field"><input id="sc-score" type="range" min="0" max="60" value="'+score+'"><span class="val" id="sc-val">'+score+'</span></div></div>'+
+        '<div class="ctl"><label for="sc-paper">Paper</label><div class="field"><select id="sc-paper"><option value="PG"'+(paper==='PG'?' selected':'')+'>Master\'s (PG)</option><option value="UG"'+(paper==='UG'?' selected':'')+'>Bachelor\'s (UG)</option></select></div></div>'+
+        '<div class="ctl"><label for="sc-void">Proctoring</label><div class="field"><select id="sc-void"><option value="0"'+(!voided?' selected':'')+'>Clear</option><option value="1"'+(voided?' selected':'')+'>Flagged (void)</option></select></div></div>'+
+      '</div>'+
+      '<div class="lever-mark"><b id="sc-mark"></b></div><div class="lever" id="sc-bar"></div><div class="lever-t" id="sc-ticks"></div>'+
+      '<div class="out" id="sc-out" style="margin-top:14px"></div><div class="calc-note" id="sc-note"></div></div>';
+    const q=sel=>root.querySelector(sel);
+    q('#cs-fee').addEventListener('change',e=>{cfg.fee=e.target.value===''?NaN:Number(e.target.value);build();});
+    root.querySelectorAll('[data-f]').forEach(el=>el.addEventListener('change',()=>{cfg.levers[+el.dataset.k][el.dataset.f]=el.value===''?NaN:Number(el.value);build();}));
+    root.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>{cfg.levers.splice(+b.dataset.rm,1);build();}));
+    const add=q('[data-add]'); if(add) add.addEventListener('click',()=>{const L=sorted(),last=L[L.length-1]||{t:20,d:5};cfg.levers.push({t:Math.min(60,last.t+5),d:Math.min(100,last.d+10)});build();});
+    q('[data-reset]').addEventListener('click',()=>{cfg=JSON.parse(JSON.stringify(DEF));build();});
+    q('#sc-score').addEventListener('input',e=>{score=+e.target.value;update();});
+    q('#sc-paper').addEventListener('change',e=>{paper=e.target.value;update();});
+    q('#sc-void').addEventListener('change',e=>{voided=e.target.value==='1';update();});
+    update();
+  }
   function update(){
-    const d=voided?0:disc(score);
-    $('sc-val').textContent=score;
-    $('sc-mark').style.left='calc('+pct(score)+' - 1.5px)';
-    $('sc-out').innerHTML=
+    const q=sel=>root.querySelector(sel), probs=problems(), ok=!probs.length;
+    q('#cs-err').innerHTML=ok?'':'<div class="cset-err">The settings form would refuse to save: '+probs.join('; ')+'.</div>';
+    const L=ok?sorted():[];
+    // bar: none-zone then one segment per lever
+    let segs='<i style="flex:'+(L.length?L[0].t:61)+';background:#D9D7D3"></i>', ticks='<span style="left:0;transform:none">0</span>';
+    L.forEach((l,k)=>{const end=k<L.length-1?L[k+1].t:61; segs+='<i style="flex:'+(end-l.t)+';background:'+RAMP[Math.min(k,4)]+'"></i>'; ticks+='<span style="left:'+pct(l.t)+'">'+l.t+'</span>';});
+    ticks+='<span style="left:100%;transform:translateX(-100%)">60</span>';
+    q('#sc-bar').innerHTML=segs; q('#sc-ticks').innerHTML=ticks;
+    q('#sc-val').textContent=score; q('#sc-mark').style.left='calc('+pct(score)+' - 1.5px)';
+    const d=(!ok||voided)?0:disc(score), low=L.length?L[0].t:null;
+    q('#sc-out').innerHTML=
       '<div class="box"><span>Discount</span><b>'+(d?d+'% off':'None')+'</b></div>'+
       '<div class="box"><span>Scholarship code</span><b class="mono" style="font-size:14px">'+(d?'YD'+paper+'-K7Q2M':'—')+'</b></div>'+
       '<div class="box"><span>ydst_stage</span><b>'+(voided?'Not qualified (void)':d?'Discount active':'Not qualified')+'</b></div>'+
-      '<div class="box"><span>Next</span><b style="font-size:13.5px">'+(d?'Code valid '+VALID_DAYS+' days':'Retake from the 1st of next month')+'</b></div>';
-    $('sc-note').textContent=voided?'A flagged attempt earns no discount and still uses up the month.':d?'The code is pushed to the fee system and the lead is assigned to a counsellor.':'Score '+(31-score)+' more to unlock 15% off.';
+      '<div class="box"><span>Next</span><b style="font-size:13.5px">'+(d?'Code valid 30 days':'Retake from the 1st of next month')+'</b></div>';
+    q('#sc-note').textContent=!ok?'Fix the settings to see a result.':voided?'A flagged attempt earns no discount and still uses up the month.':d?'The code is pushed to the fee system and the lead is assigned to a counsellor.':'Score '+(low-score)+' more to unlock '+L[0].d+'% off.';
   }
-  $('sc-score').addEventListener('input',e=>{score=+e.target.value;update();});
-  $('sc-paper').addEventListener('change',e=>{paper=e.target.value;update();});
-  $('sc-void').addEventListener('change',e=>{voided=e.target.value==='1';update();});
-  update();
+  build();
 })();
 </script>
 </body>
