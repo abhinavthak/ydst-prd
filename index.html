@@ -275,7 +275,7 @@ section h2,section h3{scroll-margin-top:16px}
 <div class="hero"><div class="hero-in"><div>
   <div class="kicker">PRODUCT SPEC · UPGRAD · YOURDEGREE</div>
   <h1>YDST Scholarship Test</h1>
-  <p>A learner registers on the scholarship page, pays a one-time registration fee and takes a 60-minute test on Gradr. Their score unlocks a discount on first-semester tuition straight away. Every step is sent to OneCRM so upGrad counsellors can follow up. The fee and the score-to-discount levers are set by admins (9.2). The full journey is in 3.1, and every CRM touch point is in 8.1.</p>
+  <p>A learner registers on the scholarship page, pays a one-time registration fee and takes a 60-minute test on Gradr. Their score unlocks a discount on first-semester tuition straight away. Every step is sent to OneCRM so upGrad counsellors can follow up. The fee, what it covers, the attempt limit and the score-to-discount levers are all set by admins (9.2). The full journey is in 3.1, and every CRM touch point is in 8.1.</p>
   <div class="meta">
     <span><b>Owner</b>: Abhinav Thakur (PM)</span>
     <span><b>Design</b>: TBD</span>
@@ -302,9 +302,10 @@ section h2,section h3{scroll-margin-top:16px}
     <h4>At a glance</h4>
     <dl>
       <dt>What</dt><dd>An online scholarship test for upGrad's online degree programmes. Learners register, pay ₹100 once, take the test on Gradr and get a tuition discount based on their score.</dd>
-      <dt>Fee</dt><dd>One-time and valid for life, set by admins in settings. Default <b>₹100</b>. It covers one test attempt every calendar month, with no fee for retakes (3.2).</dd>
-      <dt>Discount</dt><dd>One target score per discount, set by admins in settings. Defaults: <b>51+ → 50% off</b>, <b>41+ → 30% off</b>, <b>31+ → 15% off</b> first-semester tuition. Below the lowest target, no discount; the learner can retake next month (3.3).</dd>
-      <dt>Configurable</dt><dd>Registration fee and score-to-discount levers are edited in the admin dashboard (9.2), with no code release. A change applies only from that moment: learners who already paid keep their lifetime registration, and finished attempts keep the discount they earned (3.5).</dd>
+      <dt>Fee</dt><dd>Set by admins in settings. Default <b>₹100, paid once and valid for life</b>. Admins can instead charge per attempt or for a fixed number of days (9.2).</dd>
+      <dt>Attempts</dt><dd>Set by admins in settings. Default <b>one attempt per calendar month</b>, with no fee for retakes while the fee is valid (3.2).</dd>
+      <dt>Discount</dt><dd>One target score per discount, set by admins in settings. Defaults: <b>51+ → 50% off</b>, <b>41+ → 30% off</b>, <b>31+ → 15% off</b> first-semester tuition. Below the lowest target, no discount; the learner can retake when their next attempt opens (3.3).</dd>
+      <dt>Configurable</dt><dd>Fee amount, what the fee covers, the attempt limit and the score-to-discount levers are all edited in the admin dashboard (9.2), with no code release. A change applies only from that moment: learners keep what they already paid for, and finished attempts keep the discount they earned (3.5).</dd>
       <dt>Journey</dt><dd>Scholarship page → register with OTP → pay the fee → payment confirmed → redirect to Gradr → real-time result → discount activated (3.1).</dd>
       <dt>CRM</dt><dd>The lead is created in OneCRM at registration and updated at every later step, so counsellors always see where the learner is (8).</dd>
       <dt>Built on</dt><dd>YDST scholarship page (existing prototype), upGrad payment gateway, Gradr test platform, OneCRM, fee system, OTP/SMS.</dd>
@@ -316,6 +317,7 @@ section h2,section h3{scroll-margin-top:16px}
     <h4>What changed in this version · 15 Nov 2026</h4>
     <ul>
       <li><b>Registration fee and discount levers are now configurable</b> by admins in the dashboard (9.2). ₹100 and 31/41/51 → 15/30/50% are the defaults.</li>
+      <li><b>"Pay once, test monthly" is now configurable too.</b> Admins choose what the fee covers (lifetime, each attempt, or a number of days) and the attempt limit (how many attempts per calendar month, calendar week or rolling days). Lifetime fee and 1 attempt per calendar month are the defaults (3.2, 9.2).</li>
       <li>New rules for what a change affects, and what it never touches (3.5). Each payment and attempt records the settings it used.</li>
       <li>The score calculator in 3.3 now lets you edit the levers, and checks them the way the settings form will.</li>
       <li>New acceptance criteria for settings (10.2) and new lead fields for the fee paid and settings version (8.2).</li>
@@ -332,9 +334,11 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><th>Term</th><th>Meaning</th></tr>
     <tr><td>YDST</td><td>YourDegree Scholarship Test. 60 multiple-choice questions, 60 minutes, 1 mark each, no negative marking.</td></tr>
     <tr><td>Scholarship page</td><td>The public landing page with the registration form. Prototype: ydst-scholarship-prototype.</td></tr>
-    <tr><td>Registration fee</td><td>Paid once per learner and never charged again, even for retakes. The amount is set in settings (9.2). Default ₹100.</td></tr>
+    <tr><td>Registration fee</td><td>What a learner pays to take the test. Amount and what it covers are set in settings (9.2). Default: ₹100, paid once and valid for life.</td></tr>
+    <tr><td>Fee validity</td><td>What one payment covers: <b>Lifetime</b> (default), <b>Each attempt</b> (pay before every attempt) or <b>Fixed days</b> (valid for N days from payment, then pay again).</td></tr>
+    <tr><td>Attempt limit</td><td>How many attempts a learner can take in a period: calendar month (default), calendar week, or rolling N days. Default: 1 per calendar month.</td></tr>
     <tr><td>Learner</td><td>One person, identified by their OTP-verified mobile number. One mobile number = one learner = one lead.</td></tr>
-    <tr><td>Attempt</td><td>One sitting of the test. A learner gets one attempt per calendar month (IST).</td></tr>
+    <tr><td>Attempt</td><td>One sitting of the test. How many a learner gets is set by the attempt limit.</td></tr>
     <tr><td>Paper</td><td>The question set. <b>Master's</b> (advanced) for MBA, MCA, MA, MCom, MSc. <b>Bachelor's</b> (foundation) for BBA, BCA, BA, BCom, BSc. Chosen from the programme at registration.</td></tr>
     <tr><td>Discount lever</td><td>A target score and the discount it unlocks. Set in settings (9.2). Defaults: 31+ → 15%, 41+ → 30%, 51+ → 50%.</td></tr>
     <tr><td>Settings version</td><td>A numbered snapshot of the fee and levers, saved every time an admin changes them. Every payment and every attempt stores the version it used.</td></tr>
@@ -417,7 +421,7 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">3.</span>How it works</h2>
   <p>Four ideas hold the product together:</p>
   <ol>
-    <li><b>Pay once, test monthly.</b> The registration fee (default ₹100) is a lifetime registration. It unlocks one attempt every calendar month.</li>
+    <li><b>Pay once, test monthly (by default).</b> By default the fee (₹100) is a lifetime registration that unlocks one attempt every calendar month. Admins can change what the fee covers and the attempt limit (9.2).</li>
     <li><b>The score decides the discount.</b> Each target score unlocks one discount. Admins set the levers; no one approves individual discounts, and there are no exceptions.</li>
     <li><b>Results are instant.</b> Gradr sends the score back the moment the test is submitted, and the discount is active before the learner leaves the result page.</li>
     <li><b>The CRM always knows.</b> The lead is created at registration and updated at every step (8.1).</li>
@@ -524,18 +528,18 @@ section h2,section h3{scroll-margin-top:16px}
     <div class="flow">
       <div class="flow-h">Other paths</div>
       <div class="step s1"><b>Payment fails or is abandoned</b><span>Learner returns to the form with a retry button. Lead updated. Counsellor follow-up list (9).</span></div>
-      <div class="step s1"><b>Paid but doesn't start the test</b><span>"Start test" link in SMS and email. Learner can start any time this month.</span></div>
-      <div class="step s1"><b>Scores below 31</b><span>No code. Result page shows the next attempt date (1st of next month).</span></div>
-      <div class="step s1"><b>Proctoring flags the attempt</b><span>Attempt is Void, no code. Counts as this month's attempt.</span></div>
-      <div class="step s1"><b>Returning learner, next month</b><span>Logs in with OTP, skips payment, goes straight to Gradr. <i class="tp">T4</i> onward.</span></div>
+      <div class="step s1"><b>Paid but doesn't start the test</b><span>"Start test" link in SMS and email. Learner can start any time while an attempt is open.</span></div>
+      <div class="step s1"><b>Scores below 31</b><span>No code. Result page shows when the next attempt opens (default: 1st of next month).</span></div>
+      <div class="step s1"><b>Proctoring flags the attempt</b><span>Attempt is Void, no code. Counts towards the attempt limit.</span></div>
+      <div class="step s1"><b>Returning learner, next attempt</b><span>Logs in with OTP. Skips payment if their fee is still valid, otherwise pays again (5). Then goes to Gradr. <i class="tp">T4</i> onward.</span></div>
     </div>
   </div>
 
   <h3><span class="num">3.2</span>Rules</h3>
   <ul>
     <li><b>One learner per mobile number.</b> The OTP-verified mobile is the unique ID. Email is collected but isn't unique.</li>
-    <li><b>Fee is once for life.</b> A learner who has paid is never asked to pay again. A refunded learner must pay again to test.</li>
-    <li><b>One attempt per calendar month (IST).</b> Only a submitted or void attempt uses up the month. A test that's started but not submitted, or that breaks because of a Gradr error, doesn't.</li>
+    <li><b>The fee covers what settings say.</b> Default Lifetime: a learner who has paid is never asked to pay again. With Each attempt, they pay before every attempt. With Fixed days, they pay again once the days run out. A refunded learner must pay again to test.</li>
+    <li><b>Attempt limit from settings.</b> Default: 1 attempt per calendar month (IST). Periods are counted in IST; calendar weeks start on Monday. Only a submitted or void attempt counts towards the limit. A test that's started but not submitted, or that breaks because of a Gradr error, doesn't count.</li>
     <li><b>Paper follows the programme.</b> Master's programmes get the advanced paper, bachelor's the foundation paper. The learner can change programme before each attempt; the paper changes with it.</li>
     <li><b>Best active code wins.</b> If a learner has more than one active code, the fee system applies the highest discount. A new attempt never cancels an earlier, better code.</li>
     <li><b>Enrolling ends testing.</b> Once a code is used to enrol, the learner can't take more attempts.</li>
@@ -548,7 +552,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><b>51</b> or more</td><td><b>50%</b> off</td><td rowspan="3">First-semester tuition of the programme the learner tested for, at any of the 18 partner universities</td></tr>
     <tr><td><b>41</b> or more</td><td><b>30%</b> off</td></tr>
     <tr><td><b>31</b> or more</td><td><b>15%</b> off</td></tr>
-    <tr><td>Below the lowest target</td><td>None</td><td>Learner can retake next month at no cost</td></tr>
+    <tr><td>Below the lowest target</td><td>None</td><td>Learner can retake when their next attempt opens</td></tr>
   </table></div>
   <div id="calc-root"></div>
 
@@ -572,7 +576,8 @@ section h2,section h3{scroll-margin-top:16px}
   <p>Admins can change the fee and the levers at any time (9.2). A change never reaches back into the past:</p>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:34%"><col style="width:66%"></colgroup>
     <tr><th>Who</th><th>What happens after a change</th></tr>
-    <tr><td>Learner who already paid</td><td>Keeps their lifetime registration. Never asked to pay the difference, and never refunded part of it.</td></tr>
+    <tr><td>Learner who already paid</td><td>Keeps what their payment covered when they paid. A lifetime payment stays lifetime even if the setting later becomes Each attempt or Fixed days. Never asked to pay the difference, never refunded part of it.</td></tr>
+    <tr><td>Attempt limit changes</td><td>Applies to every learner from the next attempt. Attempts already taken in the current period count under the new limit. Example: limit goes from 1 to 2 per month; a learner who tested this month can test once more.</td></tr>
     <tr><td>Learner with checkout open</td><td>Pays the amount on the order they opened. The order expires after 30 minutes; a new order uses the new fee.</td></tr>
     <tr><td>Learner who hasn't paid</td><td>Sees and pays the new fee next time they load the page or open checkout.</td></tr>
     <tr><td>Attempt already scored</td><td>Keeps its discount and code. Codes are never reissued or cancelled because levers changed.</td></tr>
@@ -595,7 +600,7 @@ section h2,section h3{scroll-margin-top:16px}
     <li>Every "Register" button on the page opens the same registration form in a pop-up.</li>
   </ul>
   <h3><span class="num">4.2</span>Page copy that must match the rules</h3>
-  <p>These figures appear on the page and must come from settings (9.2), not be typed into the copy or baked into images: registration fee, target scores and discounts (3.3), test length (60 questions, 60 minutes), attempts (one a month), code validity (30 days), number of partner universities.</p>
+  <p>These figures appear on the page and must come from settings (9.2), not be typed into the copy or baked into images: registration fee, what the fee covers, target scores and discounts (3.3), test length (60 questions, 60 minutes), attempt limit, code validity (30 days), number of partner universities.</p>
   <h3><span class="num">4.3</span>Registration form fields</h3>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:24%"><col style="width:14%"><col style="width:62%"></colgroup>
     <tr><th>Field</th><th>Required</th><th>Rules</th></tr>
@@ -609,8 +614,8 @@ section h2,section h3{scroll-margin-top:16px}
   <h3><span class="num">4.4</span>Requirements</h3>
   <ul>
     <li>The submit button reads <b>Pay ₹&lt;fee&gt; &amp; Start Test</b> (e.g. Pay ₹100 &amp; Start Test) and stays disabled until every field is valid and the OTP is verified.</li>
-    <li>A fee box above the button shows: Registration fee ₹&lt;fee&gt; · One-time payment · Valid for life · 1 test a month · Free retakes.</li>
-    <li>If the mobile number has already paid, skip payment: show "Welcome back, &lt;name&gt;" and a <b>Start test</b> button (or the next attempt date if this month is used).</li>
+    <li>A fee box above the button shows: Registration fee ₹&lt;fee&gt;, then lines built from settings. Default: One-time payment · Valid for life · 1 test a month · Free retakes. With Each attempt: "Pay per attempt · 1 test a month". With Fixed days: "Valid for 90 days · 1 test a month".</li>
+    <li>If the mobile number has a valid payment, skip payment: show "Welcome back, &lt;name&gt;" and a <b>Start test</b> button, or when the next attempt opens if the limit is used. If their payment no longer covers a new attempt, show the fee and go to payment.</li>
     <li>If the mobile number is registered but unpaid, prefill the form and go to payment.</li>
     <li>UTM parameters and the landing URL are kept from the first page view through to the lead (T1).</li>
   </ul>
@@ -660,7 +665,7 @@ section h2,section h3{scroll-margin-top:16px}
     <li>The backend asks Gradr to create an attempt for the learner and gets back a test URL. <span class="tag gap">Gradr API to confirm</span></li>
     <li>The learner is redirected to that URL with a short-lived signed token (valid 10 minutes, single use). No second login.</li>
     <li>Sent to Gradr: attempt ID, learner ID, name, email, mobile, paper (Master's or Bachelor's), return URL.</li>
-    <li>If Gradr doesn't respond within 10 seconds, show "We couldn't start your test. Try again in a minute." The month's attempt isn't used.</li>
+    <li>If Gradr doesn't respond within 10 seconds, show "We couldn't start your test. Try again in a minute." The attempt isn't counted.</li>
   </ul>
   <h3><span class="num">6.2</span>Test format</h3>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:46%"><col style="width:18%"><col style="width:36%"></colgroup>
@@ -693,7 +698,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><th>State</th><th>Learner sees</th></tr>
     <tr><td>Waiting</td><td>"Scoring your test…" with a spinner. Refreshes every 3 seconds for up to 2 minutes, then "Your result will reach you by SMS and email within 15 minutes."</td></tr>
     <tr><td>50% / 30% / 15%</td><td>Score out of 60, "You've unlocked &lt;X&gt;% off your first-semester tuition", the code with a copy button, expiry date, and "A counsellor will call you within 24 hours." Button: <b>Explore universities</b>.</td></tr>
-    <tr><td>Below 31</td><td>Score out of 60, "You need 31 to unlock 15% off.", next attempt date (1st of next month), and "Retakes are free."</td></tr>
+    <tr><td>Below 31</td><td>Score out of 60, "You need &lt;lowest target&gt; to unlock &lt;its discount&gt;% off.", when the next attempt opens, and either "Retakes are free" or the retake fee, depending on settings.</td></tr>
     <tr><td>Void</td><td>"Your attempt was flagged by proctoring, so no scholarship can be given. You can try again from &lt;date&gt;."</td></tr>
   </table></div>
   <h3><span class="num">7.3</span>Scholarship code</h3>
@@ -711,7 +716,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>Discount activated</td><td>SMS, email</td><td>Score, discount, code and expiry date</td></tr>
     <tr><td>Below 31</td><td>Email</td><td>Score and next attempt date</td></tr>
     <tr><td>Code expires in 7 days</td><td>SMS, email</td><td>Reminder to enrol before the date</td></tr>
-    <tr><td>New month starts (not qualified)</td><td>SMS</td><td>"Your free retake is open"</td></tr>
+    <tr><td>Next attempt opens (not qualified)</td><td>SMS</td><td>"Your next attempt is open", with the fee if the learner's payment no longer covers it</td></tr>
   </table></div>
 </section>
 
@@ -740,13 +745,14 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td><code>ydst_stage</code></td><td>Picklist</td><td>The stages in 3.4</td></tr>
     <tr><td><code>ydst_payment_status</code></td><td>Picklist</td><td>Not started, Pending, Paid, Failed, Refunded</td></tr>
     <tr><td><code>ydst_txn_id</code></td><td>Text</td><td>Gateway transaction ID</td></tr>
-    <tr><td><code>ydst_fee_paid</code></td><td>Number</td><td>Amount actually paid, in ₹ (the fee can change over time)</td></tr>
+    <tr><td><code>ydst_fee_paid</code></td><td>Number</td><td>Total paid so far, in ₹ (the fee and what it covers can change over time)</td></tr>
     <tr><td><code>ydst_settings_version</code></td><td>Number</td><td>Settings version used by the latest payment or attempt</td></tr>
     <tr><td><code>ydst_attempts</code></td><td>Number</td><td>Submitted and void attempts so far</td></tr>
     <tr><td><code>ydst_last_score</code> / <code>ydst_best_score</code></td><td>Number</td><td>0 to 60</td></tr>
     <tr><td><code>ydst_discount_pct</code></td><td>Number</td><td>Best active discount, 0 to 100 (defaults give 0, 15, 30, 50)</td></tr>
     <tr><td><code>ydst_code</code> / <code>ydst_code_expiry</code></td><td>Text / Date</td><td>Best active code and its expiry</td></tr>
-    <tr><td><code>ydst_next_attempt</code></td><td>Date</td><td>First day the learner can test again</td></tr>
+    <tr><td><code>ydst_next_attempt</code></td><td>Date</td><td>When the learner can next test, from the attempt limit</td></tr>
+    <tr><td><code>ydst_fee_valid_until</code></td><td>Date</td><td>Empty for Lifetime. Last day the payment covers for Fixed days. Empty after each attempt for Each attempt.</td></tr>
   </table></div>
   <h3><span class="num">8.3</span>Delivery rules</h3>
   <ul>
@@ -785,6 +791,17 @@ section h2,section h3{scroll-margin-top:16px}
     <div class="wrap"><table class="fixed wt"><colgroup><col style="width:26%"><col style="width:14%"><col style="width:16%"><col style="width:44%"></colgroup>
       <tr><th>Field</th><th>Required</th><th>Default</th><th>Rules</th></tr>
       <tr><td>Fee amount (₹)</td><td><span class="rq r">Required</span></td><td>100</td><td>Whole rupees, ₹1 to ₹10,000. Includes GST. <span class="tag gap">Range to confirm</span></td></tr>
+      <tr><td>Fee covers</td><td><span class="rq r">Required</span></td><td>Lifetime</td><td><b>Lifetime</b>: pay once, never again. <b>Each attempt</b>: pay before every attempt. <b>Fixed days</b>: valid for the days below, then pay again.</td></tr>
+      <tr><td>Valid for (days)</td><td><span class="rq a">If Fixed days</span></td><td>90</td><td>Whole number, 1 to 730. Shown only when Fee covers = Fixed days.</td></tr>
+    </table></div>
+  </div>
+  <div class="wdg">
+    <div class="wdg-h"><b>Attempt limit</b><span class="whh">Settings</span><span class="wj">How often a learner can take the test.</span></div>
+    <div class="wrap"><table class="fixed wt"><colgroup><col style="width:26%"><col style="width:14%"><col style="width:16%"><col style="width:44%"></colgroup>
+      <tr><th>Field</th><th>Required</th><th>Default</th><th>Rules</th></tr>
+      <tr><td>Attempts allowed</td><td><span class="rq r">Required</span></td><td>1</td><td>Whole number, 1 to 10, per period.</td></tr>
+      <tr><td>Period</td><td><span class="rq r">Required</span></td><td>Calendar month</td><td><b>Calendar month</b> (resets on the 1st, IST), <b>Calendar week</b> (resets Monday, IST) or <b>Rolling days</b> (counted back from now).</td></tr>
+      <tr><td>Rolling days</td><td><span class="rq a">If Rolling days</span></td><td>30</td><td>Whole number, 1 to 365. Shown only when Period = Rolling days.</td></tr>
     </table></div>
   </div>
   <div class="wdg">
@@ -796,7 +813,7 @@ section h2,section h3{scroll-margin-top:16px}
     </table></div>
   </div>
   <ul>
-    <li><b>Check before saving:</b> the form shows a preview ("Score 31–40 → 15% off …") and a confirmation listing what changes.</li>
+    <li><b>Check before saving:</b> the form shows a preview in plain words ("₹100 once, valid for life · 1 attempt per calendar month · Score 31–40 → 15% off …") and a confirmation listing what changes.</li>
     <li><b>Who can edit:</b> only the Programme admin role. Everyone else can see the settings and history but not change them. <span class="tag gap">Roles to confirm</span></li>
     <li><b>History:</b> every save is listed with version, who changed it, when, and old → new values. Old versions can be viewed but not edited; to go back, save the old values as a new version.</li>
     <li><b>Scheduled changes:</b> not in v1. Changes go live when saved. <span class="tag ph">v2</span></li>
@@ -814,10 +831,11 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><th>Situation</th><th>What happens</th></tr>
     <tr><td>Learner closes the tab after paying, before the redirect</td><td>Payment is still confirmed by webhook. SMS and email carry the <b>Start test</b> link.</td></tr>
     <tr><td>Learner opens the Gradr link on a second device</td><td>The token is single use. The second device sees "This link was already used" and a button to get a new one after OTP.</td></tr>
-    <tr><td>Gradr is down</td><td>The <b>Start test</b> button shows "Tests are paused for a few minutes." The month's attempt isn't used.</td></tr>
-    <tr><td>Test starts on 31 Oct, submitted on 1 Nov</td><td>The attempt counts for the month it <b>started</b> (October). The learner can test again in November.</td></tr>
+    <tr><td>Gradr is down</td><td>The <b>Start test</b> button shows "Tests are paused for a few minutes." The attempt isn't counted.</td></tr>
+    <tr><td>Test starts on 31 Oct, submitted on 1 Nov</td><td>The attempt counts in the period it <b>started</b> (October). With the default limit, the learner can test again in November.</td></tr>
+    <tr><td>Fee is Fixed days (90) and runs out during an attempt</td><td>The attempt finishes and is scored. The next attempt needs a new payment.</td></tr>
     <tr><td>Learner changes programme from MBA to BBA</td><td>Allowed between attempts. The next attempt uses the bachelor's paper. Existing codes stay tied to the programme they were earned for.</td></tr>
-    <tr><td>Learner scores 52, then 44 next month</td><td>Both codes are issued. The 50% code stays the best active code until it expires.</td></tr>
+    <tr><td>Learner scores 52, then 44 on the next attempt</td><td>Both codes are issued. The 50% code stays the best active code until it expires.</td></tr>
     <tr><td>OneCRM is unavailable for an hour</td><td>The learner journey continues. Updates queue and deliver in order when OneCRM is back.</td></tr>
   </table></div>
   <h3><span class="num">10.2</span>Acceptance criteria</h3>
@@ -833,22 +851,26 @@ section h2,section h3{scroll-margin-top:16px}
   <h4 style="font-size:14.5px;margin:18px 0 6px">Test and result</h4>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
     <tr><th>Given</th><th>When</th><th>Then</th></tr>
-    <tr><td>A paid learner with no attempt this month</td><td>they tap Start test</td><td>they land on Gradr without logging in, and T4 is sent</td></tr>
-    <tr><td>A paid learner who tested this month</td><td>they tap Start test</td><td>no attempt is created; they see the next attempt date</td></tr>
+    <tr><td>A paid learner with an attempt open under the limit</td><td>they tap Start test</td><td>they land on Gradr without logging in, and T4 is sent</td></tr>
+    <tr><td>A paid learner who has used the attempt limit</td><td>they tap Start test</td><td>no attempt is created; they see the next attempt date</td></tr>
     <tr><td>A submitted attempt scoring 46</td><td>Gradr's callback arrives</td><td>a 30% code valid for 30 days is shown on the result page within 30 seconds, sent by SMS and email, and T5 and T6 reach OneCRM</td></tr>
     <tr><td>A submitted attempt scoring 30</td><td>Gradr's callback arrives</td><td>no code is issued, the result page shows the next attempt date, and T5 is sent with discount 0</td></tr>
-    <tr><td>An attempt flagged by proctoring with score 55</td><td>Gradr's callback arrives</td><td>the attempt is Void, no code is issued, and it counts as the month's attempt</td></tr>
+    <tr><td>An attempt flagged by proctoring with score 55</td><td>Gradr's callback arrives</td><td>the attempt is Void, no code is issued, and it counts towards the attempt limit</td></tr>
     <tr><td>A callback with an invalid signature</td><td>it reaches the webhook</td><td>it is rejected and logged; nothing changes</td></tr>
   </table></div>
   <h4 style="font-size:14.5px;margin:18px 0 6px">Settings</h4>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:32%"><col style="width:24%"><col style="width:44%"></colgroup>
     <tr><th>Given</th><th>When</th><th>Then</th></tr>
     <tr><td>Fee is ₹100</td><td>an admin saves ₹199</td><td>a new settings version goes live, and within 5 minutes the page, fee box and pay button show ₹199</td></tr>
-    <tr><td>A learner paid ₹100</td><td>the fee changes to ₹199</td><td>the learner is never asked to pay again and can keep testing monthly</td></tr>
+    <tr><td>A learner paid ₹100</td><td>the fee changes to ₹199</td><td>the learner is never asked to pay again and keeps testing within the attempt limit</td></tr>
     <tr><td>A learner with checkout open at ₹100</td><td>the fee changes to ₹199, then they pay</td><td>they are charged ₹100, the amount on their order</td></tr>
     <tr><td>Levers are 31/41/51 → 15/30/50</td><td>an admin changes 41 → 30% to 45 → 35% and saves</td><td>an attempt submitted afterwards scoring 44 gets 15% off, and one scoring 46 gets 35% off</td></tr>
     <tr><td>An attempt scored 44 earned 30% before the change</td><td>the levers change</td><td>its code and discount stay as they are</td></tr>
     <tr><td>An admin enters two levers with the same target score, or a higher score with a lower discount</td><td>they try to save</td><td>the form refuses to save and highlights the problem</td></tr>
+    <tr><td>Fee validity is Lifetime and a learner paid</td><td>an admin changes it to Each attempt</td><td>that learner never pays again; a learner who pays after the change pays before every attempt</td></tr>
+    <tr><td>Fee validity is Each attempt</td><td>a learner who scored below the lowest target taps Start test when their next attempt opens</td><td>they see the fee and go to payment before Gradr</td></tr>
+    <tr><td>Attempt limit is 1 per calendar month and a learner tested on 5 Nov</td><td>an admin changes it to 2 per calendar month</td><td>the learner can take one more attempt in November</td></tr>
+    <tr><td>Attempt limit is 1 per rolling 30 days and a learner tested on 5 Nov at 10:00 IST</td><td>they tap Start test</td><td>it opens on 5 Dec at 10:00 IST; before that they see that date</td></tr>
     <tr><td>A user without the Programme admin role</td><td>opens Settings</td><td>they can see values and history but can't edit</td></tr>
   </table></div>
   <h4 style="font-size:14.5px;margin:18px 0 6px">CRM sync</h4>
@@ -870,7 +892,7 @@ section h2,section h3{scroll-margin-top:16px}
     <tr><td>OneCRM</td><td>Lead create and update API with custom fields (8.2), and counsellor assignment at T6.</td></tr>
     <tr><td>Fee system</td><td>Receives scholarship codes and applies the discount to first-semester tuition. Reports when a code is used (T7).</td></tr>
     <tr><td>OTP, SMS, email, WhatsApp</td><td>Existing providers for OTP and the messages in 7.4.</td></tr>
-    <tr><td>Settings</td><td>Admin-editable: registration fee and discount levers (9.2), versioned. Fixed in v1 (change needs a release): code validity (30 days), one attempt per calendar month.</td></tr>
+    <tr><td>Settings</td><td>Admin-editable: fee amount, what the fee covers, attempt limit and discount levers (9.2), versioned. Fixed in v1 (change needs a release): code validity (30 days).</td></tr>
   </table></div>
   <h3><span class="num">11.1</span>Open questions</h3>
   <ol class="oq-list">
@@ -886,7 +908,7 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">12.</span>Release plan</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:14%"><col style="width:86%"></colgroup>
     <tr><th>Phase</th><th>What ships</th></tr>
-    <tr><td>v1</td><td>Scholarship page, registration with OTP, ₹100 payment, Gradr handoff and result callback, discount codes in the fee system, OneCRM touch points T1 to T7, result page, SMS and email messages, settings for fee and discount levers (9.2).</td></tr>
+    <tr><td>v1</td><td>Scholarship page, registration with OTP, ₹100 payment, Gradr handoff and result callback, discount codes in the fee system, OneCRM touch points T1 to T7, result page, SMS and email messages, settings for fee, fee validity, attempt limit and discount levers (9.2).</td></tr>
     <tr><td>v1.1</td><td>Admin dashboard (9), WhatsApp reminders, counsellor follow-up lists.</td></tr>
     <tr><td>v2</td><td>Section-wise score report for learners, practice tests, scheduled settings changes and time-limited campaigns (e.g. bonus discount weeks).</td></tr>
   </table></div>
@@ -928,6 +950,7 @@ section h2,section h3{scroll-margin-top:16px}
   <h2><span class="num">B.</span>Appendix: change log</h2>
   <div class="wrap"><table class="fixed"><colgroup><col style="width:22%"><col style="width:78%"></colgroup>
     <tr><th>Date</th><th>Change</th></tr>
+    <tr><td>15 Nov 2026 (v3)</td><td>"Pay once, test monthly" made configurable: what the fee covers (Lifetime, Each attempt, Fixed days) and the attempt limit (attempts per calendar month, calendar week or rolling days) added to settings (9.2), with change rules (3.5), edge cases, acceptance criteria and a new lead field (8.2).</td></tr>
     <tr><td>15 Nov 2026 (v2)</td><td>Registration fee and score-to-discount levers made configurable in admin settings (9.2), with versioning, change rules (3.5), editable calculator (3.3), new lead fields (8.2) and acceptance criteria (10.2).</td></tr>
     <tr><td>15 Nov 2026</td><td>First draft: journey from scholarship page to discount activation, ₹100 lifetime fee, Gradr handoff, discount levers (31/41/51), OneCRM touch points T1 to T7, admin dashboard.</td></tr>
   </table></div>
@@ -1092,7 +1115,7 @@ section h2,section h3{scroll-margin-top:16px}
       '<div class="box"><span>Discount</span><b>'+(d?d+'% off':'None')+'</b></div>'+
       '<div class="box"><span>Scholarship code</span><b class="mono" style="font-size:14px">'+(d?'YD'+paper+'-K7Q2M':'—')+'</b></div>'+
       '<div class="box"><span>ydst_stage</span><b>'+(voided?'Not qualified (void)':d?'Discount active':'Not qualified')+'</b></div>'+
-      '<div class="box"><span>Next</span><b style="font-size:13.5px">'+(d?'Code valid 30 days':'Retake from the 1st of next month')+'</b></div>';
+      '<div class="box"><span>Next</span><b style="font-size:13.5px">'+(d?'Code valid 30 days':'Retake when the next attempt opens')+'</b></div>';
     q('#sc-note').textContent=!ok?'Fix the settings to see a result.':voided?'A flagged attempt earns no discount and still uses up the month.':d?'The code is pushed to the fee system and the lead is assigned to a counsellor.':'Score '+(low-score)+' more to unlock '+L[0].d+'% off.';
   }
   build();
